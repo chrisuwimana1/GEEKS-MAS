@@ -10,7 +10,6 @@ import java.util.List;
 
 public class FileUtil {
 
-
     public static List<String> readFile(MultipartFile file) throws Exception{
         Path path = Paths.get("file.txt");
         file.transferTo(path);
@@ -18,7 +17,5 @@ public class FileUtil {
         Files.delete(path);
         return list;
     }
-
-
 
 }
