@@ -10,7 +10,7 @@ public class Location implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false, length = 30)
-    private String location;
+    private String name;
 
     @Override
     public boolean equals(Object o) {
@@ -33,19 +33,19 @@ public class Location implements Serializable {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getName() {
+        return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setName(String location) {
+        this.name = location;
     }
 
     @Override
     public String toString() {
         return "Location{" +
                 "id=" + id +
-                ", location='" + location + '\'' +
+                ", location='" + name + '\'' +
                 '}';
     }
 }

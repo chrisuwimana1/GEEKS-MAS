@@ -2,6 +2,7 @@ package com.mum.edu.geek.domain;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,10 +14,11 @@ public class Block implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false,length = 20)
+    @NaturalId
+    @Column(nullable = false, length = 20)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "block")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
     private List<CancelledSession> cancelledSession;
 
     public Integer getId() {

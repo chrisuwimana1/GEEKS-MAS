@@ -12,15 +12,17 @@ public class Student implements Serializable {
     private Integer id;
     @Column(length = 50,nullable = false)
     private String firstName;
-    @Column(length = 50,nullable = false)
+    @Column(length = 50, nullable = false)
     private String lastName;
     private Long barCodeId;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
     private Entry entry;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<Enroll> enroll;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "student")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<TmSession> tmSessions;
 
     public int getId() {
