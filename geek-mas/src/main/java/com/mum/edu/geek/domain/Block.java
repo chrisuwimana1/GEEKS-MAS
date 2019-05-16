@@ -1,7 +1,5 @@
 package com.mum.edu.geek.domain;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -19,7 +17,7 @@ public class Block implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
-    private List<CancelledSession> cancelledSession;
+    private List<CancelledSession> cancelledSessionList;
 
     public Integer getId() {
         return id;
@@ -37,12 +35,12 @@ public class Block implements Serializable {
         this.name = name;
     }
 
-    public List<CancelledSession> getCancelledSession() {
-        return cancelledSession;
+    public List<CancelledSession> getCancelledSessionList() {
+        return cancelledSessionList;
     }
 
-    public void setCancelledSession(List<CancelledSession> cancelledSession) {
-        this.cancelledSession = cancelledSession;
+    public void setCancelledSessionList(List<CancelledSession> cancelledSession) {
+        this.cancelledSessionList = cancelledSession;
     }
 
     @Override
@@ -63,7 +61,7 @@ public class Block implements Serializable {
         return "Block{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", cancelledSession=" + cancelledSession +
+                ", cancelledSession=" + cancelledSessionList +
                 '}';
     }
 }

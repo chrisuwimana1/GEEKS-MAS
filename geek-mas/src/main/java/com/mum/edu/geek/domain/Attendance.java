@@ -25,11 +25,19 @@ public class Attendance implements Serializable {
     public Attendance(){}
 
     public Attendance(Location location,Student student,String dateCol,String timeCol){
-        this.attendanceDate = LocalDate.parse(dateCol, DateTimeFormatter.ofPattern("mm/dd/yyyy"));
+        this.attendanceDate = LocalDate.parse(dateCol, DateTimeFormatter.ofPattern("MM/dd/yy"));
         this.setAttendanceTime(timeCol);
         this.setLocation(location);
         this.setStudent(student);
     }
+
+    public Attendance(Location location,Student student,String dateCol){
+        this.attendanceDate = LocalDate.parse(dateCol, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        this.setAttendanceTime("AM");
+        this.setLocation(location);
+        this.setStudent(student);
+    }
+
 
     public Integer getId() {
         return id;

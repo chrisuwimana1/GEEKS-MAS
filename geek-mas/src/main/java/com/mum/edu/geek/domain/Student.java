@@ -20,10 +20,10 @@ public class Student implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Entry entry;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-    private List<Enroll> enroll;
+    private List<Enroll> enrollList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-    private List<TmSession> tmSessions;
+    private List<TmSession> tmSessionList;
 
     public int getId() {
         return id;
@@ -82,12 +82,12 @@ public class Student implements Serializable {
         return getId() == student.getId();
     }
 
-    public List<TmSession> getTmSessions() {
-        return tmSessions;
+    public List<TmSession> getTmSessionList() {
+        return tmSessionList;
     }
 
-    public void setTmSessions(List<TmSession> tmSessions) {
-        this.tmSessions = tmSessions;
+    public void setTmSessionList(List<TmSession> tmSessions) {
+        this.tmSessionList = tmSessions;
     }
 
     @Override
