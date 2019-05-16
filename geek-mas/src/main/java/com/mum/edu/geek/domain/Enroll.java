@@ -2,7 +2,7 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -12,7 +12,7 @@ public class Enroll implements Serializable {
     private EnrollId id;
 
     @Column(nullable = false)
-    private Date enrollDate;
+    private LocalDate enrollDate;
 
     @ManyToOne
     @MapsId("studentId")
@@ -55,11 +55,11 @@ public class Enroll implements Serializable {
         this.id = enrollId;
     }
 
-    public Date getEnrollDate() {
+    public LocalDate getEnrollDate() {
         return enrollDate;
     }
 
-    public void setEnrollDate(Date enrollDate) {
+    public void setEnrollDate(LocalDate enrollDate) {
         this.enrollDate = enrollDate;
     }
 
