@@ -14,7 +14,7 @@ public class TmSession implements Serializable {
     private Date sessionDate;
     @Column(nullable = false, length = 10)
     private String sessionType;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Student student;
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;

@@ -18,7 +18,8 @@ public class Section implements Serializable {
     private Course course;
     @OneToOne(cascade = CascadeType.ALL)
     private Faculty faculty;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Block block;
 
     public Integer getId() {

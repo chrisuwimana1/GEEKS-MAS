@@ -15,8 +15,8 @@ public class Block implements Serializable {
     private Integer id;
     @Column(nullable = false,length = 20)
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "block")
     private List<CancelledSession> cancelledSession;
 
     public Integer getId() {

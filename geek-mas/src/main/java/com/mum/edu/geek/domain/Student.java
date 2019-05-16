@@ -2,6 +2,7 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,6 +19,9 @@ public class Student implements Serializable {
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
     private Entry entry;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "student")
+    private List<TmSession> tmSessions;
 
     public int getId() {
         return id;
@@ -67,12 +71,21 @@ public class Student implements Serializable {
         this.entry = entry;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Student)) return false;
         Student student = (Student) o;
         return getId() == student.getId();
+    }
+
+    public List<TmSession> getTmSessions() {
+        return tmSessions;
+    }
+
+    public void setTmSessions(List<TmSession> tmSessions) {
+        this.tmSessions = tmSessions;
     }
 
     @Override
@@ -91,4 +104,5 @@ public class Student implements Serializable {
                 ", entry=" + entry +
                 '}';
     }
+
 }
