@@ -1,5 +1,7 @@
 package com.mum.edu.geek.domain;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +14,7 @@ public class Course implements Serializable {
     @Column(nullable = false, length = 5)
     private String id;
     @Column(nullable = false, length = 80)
+    @NaturalId
     private String name;
     @Column(length = 500)
     private String description;
