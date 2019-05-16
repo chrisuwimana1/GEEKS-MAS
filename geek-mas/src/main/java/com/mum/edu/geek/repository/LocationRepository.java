@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface LocationRepository extends JpaRepository<Location,Integer> {
 
-    public List<Location> findByLocation(String location);
+    public List<Location> findByName(String location);
 }
