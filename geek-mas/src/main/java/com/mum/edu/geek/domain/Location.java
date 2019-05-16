@@ -12,6 +12,11 @@ public class Location implements Serializable {
     @Column(nullable = false, length = 30)
     private String name;
 
+    public Location(){}
+    public Location(String id){
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

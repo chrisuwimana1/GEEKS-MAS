@@ -35,15 +35,11 @@ public class AttendanceService {
             String timeCol = columns[2];
             String locationCol = columns[3];
 
-            List<Location> listLocation = this.locationRepository.findByName(locationCol);
             List<Student> listStudent = this.studentRepository.findByBarCodeId(Long.parseLong(barCodeCol));
+            Student student = listStudent.get(0);
 
-            if(checkRepositoryContent(listLocation) && checkRepositoryContent(listStudent)){
-                Location location = listLocation.get(0) ;
-                Student student = listStudent.get(0);
-                Attendance att = new Attendance(location,student,dateCol,timeCol);
-                this.attendanceRepository.save(att);
-            }
+            Attendance att = new Attendance(locationCol,student,dateCol,timeCol);
+            this.attendanceRepository.save(att);
 
         } );
 
@@ -57,28 +53,13 @@ public class AttendanceService {
             String dateCol = columns[0];
             String studentCol = columns[1].replaceAll("-","");
 
-            List<Location> listLocation = this.locationRepository.findByName("DB");
             Student student = this.studentRepository.getOne(Integer.parseInt(studentCol));
 
-            if(checkRepositoryContent(listLocation)){
-                Location location = listLocation.get(0) ;
-                Attendance att = new Attendance(location,student,dateCol);
-                this.attendanceRepository.save(att);
-            }
+            Attendance att = new Attendance("DB",student,dateCol);
+            this.attendanceRepository.save(att);
 
         } );
 
-    }
-
-
-    private  boolean  checkRepositoryContent(List list) throws  RuntimeException{
-        boolean valid = true;
-        if(list.size() == 0 ){
-            valid = false;
-        } else if(list.size() > 1){
-            //log
-        }
-        return valid;
     }
 
 }
