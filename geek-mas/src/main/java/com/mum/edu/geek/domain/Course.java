@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Course implements Serializable {
     @Id
     @Column(nullable = false, length = 5)
-    private String id;
+    private Integer id;
     @Column(nullable = false, length = 80)
     private String name;
     @Column(length = 500)
@@ -20,11 +20,11 @@ public class Course implements Serializable {
     @Column(nullable = false)
     private Integer numberOfSession;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

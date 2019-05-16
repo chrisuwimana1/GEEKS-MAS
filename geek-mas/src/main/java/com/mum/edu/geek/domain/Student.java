@@ -9,12 +9,12 @@ import java.util.Objects;
 public class Student implements Serializable {
     @Id
     @Column(length = 6)
-    private int id;
+    private Integer id;
     @Column(length = 50,nullable = false)
     private String firstName;
     @Column(length = 50,nullable = false)
     private String lastName;
-    private long bareCodeId;
+    private Long barCodeId;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -47,12 +47,12 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
-    public long getBareCodeId() {
-        return bareCodeId;
+    public Long getBarCodeId() {
+        return barCodeId;
     }
 
-    public void setBareCodeId(long bareCodeId) {
-        this.bareCodeId = bareCodeId;
+    public void setBareCodeId(Long barCodeId) {
+        this.barCodeId = barCodeId;
     }
 
     public User getUser() {
@@ -99,7 +99,7 @@ public class Student implements Serializable {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", bareCodeId=" + bareCodeId +
+                ", bareCodeId=" + barCodeId +
                 ", user=" + user +
                 ", entry=" + entry +
                 '}';
