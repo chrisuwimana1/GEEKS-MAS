@@ -12,20 +12,12 @@ public class Block implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NaturalId
+
     @Column(nullable = false, length = 20)
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
     private List<CancelledSession> cancelledSessionList;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -41,6 +33,14 @@ public class Block implements Serializable {
 
     public void setCancelledSessionList(List<CancelledSession> cancelledSession) {
         this.cancelledSessionList = cancelledSession;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Block implements Serializable {
         return "Block{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", cancelledSession=" + cancelledSessionList +
+                ", cancelledSessionList=" + cancelledSessionList +
                 '}';
     }
 }

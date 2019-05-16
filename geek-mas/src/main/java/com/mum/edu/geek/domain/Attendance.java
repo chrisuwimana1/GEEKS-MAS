@@ -16,9 +16,9 @@ public class Attendance implements Serializable {
     private LocalDate attendanceDate;
     @Column(length = 3,nullable = false)
     private String attendanceTime;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     private Student student;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     private Location location;
 
 

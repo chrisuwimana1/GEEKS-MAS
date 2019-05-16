@@ -2,6 +2,7 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class CancelledSession implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    private Date sessionDate;
+    private LocalDate sessionDate;
     @ManyToOne(cascade = CascadeType.ALL)
     private Block block;
 
@@ -24,11 +25,11 @@ public class CancelledSession implements Serializable {
         this.id = id;
     }
 
-    public Date getSessionDate() {
+    public LocalDate getSessionDate() {
         return sessionDate;
     }
 
-    public void setSessionDate(Date sessionDate) {
+    public void setSessionDate(LocalDate sessionDate) {
         this.sessionDate = sessionDate;
     }
 
