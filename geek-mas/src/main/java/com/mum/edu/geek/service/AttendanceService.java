@@ -39,7 +39,7 @@ public class AttendanceService {
             String locationCol = columns[3];
 
 
-            Location location = this.locationRepository.findByLocation(locationCol).get(0);
+            Location location = this.locationRepository.findByName(locationCol).get(0);
             Student student = this.studentRepository.findByBarCodeId(Long.parseLong(barCodeCol)).get(0);
 
             Attendance att = new Attendance(location,student,dateCol,timeCol);
