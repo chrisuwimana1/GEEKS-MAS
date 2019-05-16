@@ -11,23 +11,21 @@ import java.util.Objects;
 @Entity
 public class Course implements Serializable {
     @Id
-    @Column(nullable = false, length = 5)
-    private Integer id;
+    @Column(nullable = false, length = 10)
+    private String id;
     @Column(nullable = false, length = 80)
     @NaturalId
     private String name;
-    @Column(length = 500)
-    private String description;
     @Column(nullable = false)
     private Integer numberOfWeek;
     @Column(nullable = false)
     private Integer numberOfSession;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,14 +35,6 @@ public class Course implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getNumberOfWeek() {
@@ -81,7 +71,6 @@ public class Course implements Serializable {
         return "Course{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
                 ", numberOfWeek=" + numberOfWeek +
                 ", numberOfSession=" + numberOfSession +
                 '}';

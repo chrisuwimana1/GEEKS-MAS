@@ -1,5 +1,7 @@
 package com.mum.edu.geek.domain;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,10 +12,9 @@ public class Student implements Serializable {
     @Id
     @Column(length = 6)
     private Integer id;
-    @Column(length = 50,nullable = false)
-    private String firstName;
-    @Column(length = 50, nullable = false)
-    private String lastName;
+    @Column(length = 100,nullable = false)
+    private String name;
+    @NaturalId
     private Long barCodeId;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
@@ -33,20 +34,12 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
     public Long getBarCodeId() {
@@ -99,8 +92,7 @@ public class Student implements Serializable {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
                 ", bareCodeId=" + barCodeId +
                 ", user=" + user +
                 ", entry=" + entry +

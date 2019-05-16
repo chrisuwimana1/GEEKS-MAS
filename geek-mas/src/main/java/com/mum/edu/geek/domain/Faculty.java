@@ -9,10 +9,8 @@ public class Faculty implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false, length = 50)
-    private String firstName;
-    @Column(nullable = false, length = 50)
-    private String lastName;
+    @Column(nullable = false, length = 100)
+    private String name;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
@@ -24,20 +22,12 @@ public class Faculty implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
     public User getUser() {
@@ -65,8 +55,7 @@ public class Faculty implements Serializable {
     public String toString() {
         return "Faculty{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
                 ", user=" + user +
                 '}';
     }
