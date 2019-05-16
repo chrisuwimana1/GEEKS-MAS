@@ -7,10 +7,10 @@ import java.util.Objects;
 @Entity
 public class Location implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(length = 5)
+    private String id;
     @Column(nullable = false, length = 30)
-    private String location;
+    private String name;
 
     @Override
     public boolean equals(Object o) {
@@ -25,27 +25,27 @@ public class Location implements Serializable {
         return Objects.hash(id);
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public String getName() {
+        return name;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setName(String location) {
+        this.name = location;
     }
 
     @Override
     public String toString() {
         return "Location{" +
                 "id=" + id +
-                ", location='" + location + '\'' +
+                ", location='" + name + '\'' +
                 '}';
     }
 }

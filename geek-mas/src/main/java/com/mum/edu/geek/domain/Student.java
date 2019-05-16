@@ -1,23 +1,30 @@
 package com.mum.edu.geek.domain;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Student implements Serializable {
     @Id
     @Column(length = 6)
-    private int id;
-    @Column(length = 50,nullable = false)
-    private String firstName;
-    @Column(length = 50,nullable = false)
-    private String lastName;
-    private long bareCodeId;
+    private Integer id;
+    @Column(length = 100,nullable = false)
+    private String name;
+    @NaturalId
+    private Long barCodeId;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
     private Entry entry;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<Enroll> enrollList;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<TmSession> tmSessionList;
 
     public int getId() {
         return id;
@@ -27,28 +34,20 @@ public class Student implements Serializable {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String firstName) {
+        this.name = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Long getBarCodeId() {
+        return barCodeId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public long getBareCodeId() {
-        return bareCodeId;
-    }
-
-    public void setBareCodeId(long bareCodeId) {
-        this.bareCodeId = bareCodeId;
+    public void setBareCodeId(Long barCodeId) {
+        this.barCodeId = barCodeId;
     }
 
     public User getUser() {
@@ -67,12 +66,21 @@ public class Student implements Serializable {
         this.entry = entry;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Student)) return false;
         Student student = (Student) o;
         return getId() == student.getId();
+    }
+
+    public List<TmSession> getTmSessionList() {
+        return tmSessionList;
+    }
+
+    public void setTmSessionList(List<TmSession> tmSessions) {
+        this.tmSessionList = tmSessions;
     }
 
     @Override
@@ -84,11 +92,11 @@ public class Student implements Serializable {
     public String toString() {
         return "Student{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", bareCodeId=" + bareCodeId +
+                ", name='" + name + '\'' +
+                ", bareCodeId=" + barCodeId +
                 ", user=" + user +
                 ", entry=" + entry +
                 '}';
     }
+
 }

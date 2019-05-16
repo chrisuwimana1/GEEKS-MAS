@@ -1,7 +1,6 @@
 package com.mum.edu.geek.domain;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,19 +12,12 @@ public class Block implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false,length = 20)
+
+    @Column(nullable = false, length = 20)
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
-    @Fetch(FetchMode.JOIN)
-    private List<CancelledSession> cancelledSession;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
+    private List<CancelledSession> cancelledSessionList;
 
     public String getName() {
         return name;
@@ -35,12 +27,20 @@ public class Block implements Serializable {
         this.name = name;
     }
 
-    public List<CancelledSession> getCancelledSession() {
-        return cancelledSession;
+    public List<CancelledSession> getCancelledSessionList() {
+        return cancelledSessionList;
     }
 
-    public void setCancelledSession(List<CancelledSession> cancelledSession) {
-        this.cancelledSession = cancelledSession;
+    public void setCancelledSessionList(List<CancelledSession> cancelledSession) {
+        this.cancelledSessionList = cancelledSession;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Block implements Serializable {
         return "Block{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", cancelledSession=" + cancelledSession +
+                ", cancelledSessionList=" + cancelledSessionList +
                 '}';
     }
 }

@@ -2,6 +2,8 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,13 +13,31 @@ public class Attendance implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    private Date attendanceDate;
+    private LocalDate attendanceDate;
     @Column(length = 3,nullable = false)
     private String attendanceTime;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     private Student student;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,optional = false)
     private Location location;
+
+
+    public Attendance(){}
+
+    public Attendance(Location location,Student student,String dateCol,String timeCol){
+        this.attendanceDate = LocalDate.parse(dateCol, DateTimeFormatter.ofPattern("MM/dd/yy"));
+        this.setAttendanceTime(timeCol);
+        this.setLocation(location);
+        this.setStudent(student);
+    }
+
+    public Attendance(Location location,Student student,String dateCol){
+        this.attendanceDate = LocalDate.parse(dateCol, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        this.setAttendanceTime("AM");
+        this.setLocation(location);
+        this.setStudent(student);
+    }
+
 
     public Integer getId() {
         return id;
@@ -27,11 +47,11 @@ public class Attendance implements Serializable {
         this.id = id;
     }
 
-    public Date getAttendanceDate() {
+    public LocalDate getAttendanceDate() {
         return attendanceDate;
     }
 
-    public void setAttendanceDate(Date attendanceDate) {
+    public void setAttendanceDate(LocalDate attendanceDate) {
         this.attendanceDate = attendanceDate;
     }
 
