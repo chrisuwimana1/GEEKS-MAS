@@ -12,7 +12,7 @@ public class Entry implements Serializable {
     private Integer id;
     @Column(nullable = false, length = 30)
     private String name;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "entry")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "entry")
     private List<Student> student;
 
     public Integer getId() {
