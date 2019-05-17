@@ -48,6 +48,11 @@ public class DashboardController {
         return "redirect:/main_dashboard";
     }
 
+    @GetMapping("/sessions")
+    public String showTMSessions(){
+        return "viewSessions";
+    }
+
 }
 
 

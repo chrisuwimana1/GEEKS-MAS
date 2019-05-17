@@ -17,10 +17,6 @@
 
     <hr>
 
-    <p>Sessions in Block: </p>
-    <p>Days present: </p>
-    <p>Percentage attended: </p>
-    <p>Extra credit points: </p>
     <form method="post" th:action="@{/student/attendance}">
         <div class="form-group">
             <label>Block: </label>
@@ -30,8 +26,11 @@
                 <option value="DC">Feb 2019</option>
             </select>
         </div>
-
     </form>
+    <p>Sessions in Block: </p>
+    <p>Total Sessions Attended: </p>
+    <p>Percentage attended: </p>
+    <p>Extra credit points: </p>
 
     <table class="table">
         <thead>
@@ -54,7 +53,6 @@
 </div>
 
 <hr>
-
 
 </body>
 </html>
