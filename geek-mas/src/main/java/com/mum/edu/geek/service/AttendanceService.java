@@ -36,10 +36,13 @@ public class AttendanceService {
             String locationCol = columns[3];
 
             List<Student> listStudent = this.studentRepository.findByBarCodeId(Long.parseLong(barCodeCol));
-            Student student = listStudent.get(0);
 
-            Attendance att = new Attendance(locationCol,student,dateCol,timeCol);
-            this.attendanceRepository.save(att);
+            if(!listStudent.isEmpty()){
+                Student student = listStudent.get(0);
+
+                Attendance att = new Attendance(locationCol,student,dateCol,timeCol);
+                this.attendanceRepository.save(att);
+            }
 
         } );
 
