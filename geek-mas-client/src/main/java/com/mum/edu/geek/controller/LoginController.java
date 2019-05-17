@@ -14,6 +14,6 @@ public class LoginController {
 
     @PostMapping(value = "/login")
     public  String processLogin(){
-        return "dashboard";
+        return "main_dashboard";
     }
 }
