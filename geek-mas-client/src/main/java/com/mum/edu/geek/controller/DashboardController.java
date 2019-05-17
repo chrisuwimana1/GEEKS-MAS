@@ -15,7 +15,7 @@ public class DashboardController {
     @PostMapping(value = "/add/session")
     public  String processTMCheckinForm(){
         //Save Session
-        return "dashboard";
+        return "main_dashboard";
     }
 
     @GetMapping("/student/attendance")
@@ -32,7 +32,7 @@ public class DashboardController {
     public String processFacultyReport(){
 
         //Call the service
-        return "redirect:/dashboard";
+        return "redirect:/main_dashboard";
     }
 
 
@@ -45,7 +45,7 @@ public class DashboardController {
     public String processEntryReport(){
 
         //Call the service
-        return "redirect:/dashboard";
+        return "redirect:/main_dashboard";
     }
 
 }
