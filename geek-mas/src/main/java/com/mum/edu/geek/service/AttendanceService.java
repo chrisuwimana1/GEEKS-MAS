@@ -25,40 +25,47 @@ public class AttendanceService {
     private AttendanceRepository attendanceRepository;
 
 
-    @Transactional
-    public void saveAutoFile(List<String> fileLines) throws  Exception{
-        fileLines.stream().forEach( line -> {
+    //@Transactional
+    public void saveAutoFile(List<String> fileLines) throws Exception {
+        fileLines.stream().forEach(line -> {
 
             String[] columns = line.split(",");
+
             String barCodeCol = columns[0];
             String dateCol = columns[1];
             String timeCol = columns[2];
             String locationCol = columns[3];
 
             List<Student> listStudent = this.studentRepository.findByBarCodeId(Long.parseLong(barCodeCol));
-            Student student = listStudent.get(0);
 
-            Attendance att = new Attendance(locationCol,student,dateCol,timeCol);
-            this.attendanceRepository.save(att);
+            if (!listStudent.isEmpty()) {
+                Student student = listStudent.get(0);
+                Attendance att = new Attendance(locationCol, student, dateCol, timeCol);
+                try {
+                    this.attendanceRepository.save(att);
+                } catch (Exception ex){
+                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+                    //ex.printStackTrace();
+                }
 
-        } );
-
+            }
+        });
     }
 
     @Transactional
-    public void saveManualFile(List<String> fileLines) throws  Exception{
-        fileLines.stream().forEach( line -> {
+    public void saveManualFile(List<String> fileLines) throws Exception {
+        fileLines.stream().forEach(line -> {
 
             String[] columns = line.split(",");
             String dateCol = columns[0];
-            String studentCol = columns[1].replaceAll("-","");
+            String studentCol = columns[1].replaceAll("-", "");
 
             Student student = this.studentRepository.getOne(Integer.parseInt(studentCol));
 
-            Attendance att = new Attendance("DB",student,dateCol);
+            Attendance att = new Attendance("DB", student, dateCol);
             this.attendanceRepository.save(att);
 
-        } );
+        });
 
     }
 

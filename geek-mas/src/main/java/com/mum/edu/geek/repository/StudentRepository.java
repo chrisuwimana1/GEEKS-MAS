@@ -10,5 +10,5 @@ import java.util.stream.Stream;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Integer> {
-    public List<Student> findByBarCodeId(Long barCodeId);
+    List<Student> findByBarCodeId(Long barCodeId);
 }
