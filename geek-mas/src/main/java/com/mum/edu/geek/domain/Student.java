@@ -22,9 +22,10 @@ public class Student implements Serializable {
     private Entry entry;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Enroll> enrollList;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<TmSession> tmSessionList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<Attendance> attendanceList;
 
     public int getId() {
         return id;
@@ -66,6 +67,29 @@ public class Student implements Serializable {
         this.entry = entry;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setBarCodeId(Long barCodeId) {
+        this.barCodeId = barCodeId;
+    }
+
+    public List<Enroll> getEnrollList() {
+        return enrollList;
+    }
+
+    public void setEnrollList(List<Enroll> enrollList) {
+        this.enrollList = enrollList;
+    }
+
+    public List<Attendance> getAttendanceList() {
+        return attendanceList;
+    }
+
+    public void setAttendanceList(List<Attendance> attendanceList) {
+        this.attendanceList = attendanceList;
+    }
 
     @Override
     public boolean equals(Object o) {

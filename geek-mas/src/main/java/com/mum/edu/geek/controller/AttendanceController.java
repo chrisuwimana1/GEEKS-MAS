@@ -20,7 +20,8 @@ public class AttendanceController {
         try{
             service.saveAutoFile(FileUtil.readFile(file));
         }catch (Exception ex){
-            throw new Exception("Invalid information, check the content of each column");
+            ex.printStackTrace();
+            throw new Exception("Invalid information: "+ex.getMessage());
         }
     }
 
