@@ -36,11 +36,16 @@ footer {
         width: 40%;
         margin-left: 12px;
     }
+
+    /*.sidebar-nav{*/
+    /*    position: fixed;*/
+    /*}*/
 }
 
 #sidebar {
     padding:15px;
     margin-top:10px;
+    /*position: fixed;*/
 }
 
 #attendance-page{

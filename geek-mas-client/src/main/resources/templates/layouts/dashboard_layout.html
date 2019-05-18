@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">MUM</title>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link th:href="@{/resource/css/simple-sidebar.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+<div th:replace="fragments/dashboard_nav :: div">This nav content
+    is going to be replaced.</div>
+
+<div th:replace="fragments/dashboard_sidebar :: div">This sidebar content
+    is going to be replaced.</div>
+
+<div class="container-fluid">
+    <div id="main-content" layout:fragment="main-content">
+        <h1>This is the Layout's main section</h1>
+        <p>This content will be replaced if the page using the layout
+            also defines a layout:fragment="content" segment.</p>
+    </div>
+</div>
+
+</body>
+
+</html>
