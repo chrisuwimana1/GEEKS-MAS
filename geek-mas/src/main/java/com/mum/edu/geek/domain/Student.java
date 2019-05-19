@@ -27,6 +27,10 @@ public class Student implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Attendance> attendanceList;
 
+    public Student(Integer id){
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
