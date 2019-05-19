@@ -12,13 +12,13 @@ public class StudentFaculty implements Serializable {
     private String studentName;
     private Integer possible;
     private Integer attended;
-    private Integer blockId;
     private Integer sectionId;
     private String courseId;
     private String courseName;
     private LocalDate sectionStartDate;
     private Integer facultyId;
     private String FacultyName;
+    private Integer cancelledSession;
 
     public Integer getStudentId() {
         return studentId;
@@ -50,14 +50,6 @@ public class StudentFaculty implements Serializable {
 
     public void setAttended(Integer attended) {
         this.attended = attended;
-    }
-
-    public Integer getBlockId() {
-        return blockId;
-    }
-
-    public void setBlockId(Integer blockId) {
-        this.blockId = blockId;
     }
 
     public Integer getSectionId() {
@@ -108,6 +100,14 @@ public class StudentFaculty implements Serializable {
         FacultyName = facultyName;
     }
 
+    public Integer getCancelledSession() {
+        return cancelledSession;
+    }
+
+    public void setCancelledSession(Integer cancelledSession) {
+        this.cancelledSession = cancelledSession;
+    }
+
     @Override
     public String toString() {
         return "StudentFaculty{" +
@@ -115,7 +115,6 @@ public class StudentFaculty implements Serializable {
                 ", studentName='" + studentName + '\'' +
                 ", possible=" + possible +
                 ", attended=" + attended +
-                ", blockId=" + blockId +
                 ", sectionId=" + sectionId +
                 ", courseId='" + courseId + '\'' +
                 ", courseName='" + courseName + '\'' +
