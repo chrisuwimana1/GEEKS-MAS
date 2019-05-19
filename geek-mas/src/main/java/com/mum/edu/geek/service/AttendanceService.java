@@ -1,13 +1,10 @@
 package com.mum.edu.geek.service;
 
 import com.mum.edu.geek.domain.Attendance;
-import com.mum.edu.geek.domain.Location;
 import com.mum.edu.geek.domain.Student;
-import com.mum.edu.geek.domain.TempAttendance;
 import com.mum.edu.geek.repository.AttendanceRepository;
 import com.mum.edu.geek.repository.LocationRepository;
 import com.mum.edu.geek.repository.StudentRepository;
-import com.mum.edu.geek.repository.TempAttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +23,12 @@ public class AttendanceService {
     private StudentRepository studentRepository;
 
     @Autowired
-    private TempAttendanceRepository attendanceRepository;
+    private AttendanceRepository attendanceRepository;
 
 
     //@Transactional
     public void saveAutoFile(List<String> fileLines) throws Exception {
-        List<TempAttendance> list=new ArrayList<>();
+        List<Attendance> list=new ArrayList<>();
         fileLines.stream().forEach(line -> {
 
             String[] columns = line.split(",");
@@ -41,14 +38,14 @@ public class AttendanceService {
             String timeCol = columns[2];
             String locationCol = columns[3];
 
-            TempAttendance att = new TempAttendance(dateCol, timeCol, Integer.parseInt(barCodeCol), locationCol);
-            list.add(att);
-//            try {
-                this.attendanceRepository.save(att);
-//            } catch (Exception ex) {
-//                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
-//                //ex.printStackTrace();
-//            }
+//            TempAttendance att = new TempAttendance(dateCol, timeCol, Integer.parseInt(barCodeCol), locationCol);
+//            list.add(att);
+////            try {
+//                this.attendanceRepository.save(att);
+////            } catch (Exception ex) {
+////                System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+////                //ex.printStackTrace();
+////            }
 
 
         });
