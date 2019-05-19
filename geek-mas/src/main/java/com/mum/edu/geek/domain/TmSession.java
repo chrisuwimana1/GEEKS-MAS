@@ -13,12 +13,12 @@ public class TmSession implements Serializable {
     private Integer id;
     @Column(nullable = false)
     private LocalDate sessionDate;
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String sessionType;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Student student;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Location location;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Location location;
 
     public Integer getId() {
         return id;
@@ -52,13 +52,13 @@ public class TmSession implements Serializable {
         this.student = student;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+//    public Location getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(Location location) {
+//        this.location = location;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -80,7 +80,6 @@ public class TmSession implements Serializable {
                 ", sessionDate=" + sessionDate +
                 ", sessionType='" + sessionType + '\'' +
                 ", student=" + student +
-                ", location=" + location +
                 '}';
     }
 }
