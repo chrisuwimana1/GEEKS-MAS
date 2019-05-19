@@ -9,13 +9,13 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script th:src="@{/resource/js/authentication.js}" ></script>
+    <script th:src="@{/resource/js/authentication.js}"></script>
 
     <link th:href="@{/resource/css/login.css}" rel="stylesheet" type="text/css"/>
 </head>
 
 <body class="text-center">
-<form method="post" class="form-signin"  th:action="@{/login}">
+<form method="post" class="form-signin" th:action="@{/login}">
     <img class="mb-4" src="https://getbootstrap.com/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72"
          height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -28,10 +28,9 @@
             <input type="checkbox" value="remember-me"> Remember me
         </label>
     </div>
-    <button id="btnSignIn"  class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
+    <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
 </form>
-
 
 
 </body>
