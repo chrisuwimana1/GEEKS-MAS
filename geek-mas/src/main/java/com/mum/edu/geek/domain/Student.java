@@ -1,5 +1,6 @@
 package com.mum.edu.geek.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -16,15 +17,28 @@ public class Student implements Serializable {
     private String name;
     @NaturalId
     private Long barCodeId;
+
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     private Entry entry;
+
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Enroll> enrollList;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    @OneToMany( mappedBy = "student")
+    @JsonIgnore
     private List<TmSession> tmSessionList;
+
+    public Student(){}
+
+    public Student(Integer id){
+        this.id = id;
+    }
 
     public int getId() {
         return id;

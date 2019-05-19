@@ -41,6 +41,4 @@ public class AttendanceController {
         System.out.println(" --  " + value);
         return "";
     }
-
-
 }

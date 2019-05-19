@@ -1,38 +1,103 @@
 $(document).ready(function () {
-    $('#dtBasicExample').DataTable();
-    $('.dataTables_length').addClass('bs-select');
+    var tmSessionId = null;
+    //$('#dtBasicExample').DataTable();
+   var table = $('#dtBasicExample').DataTable({
+        "processing": true,
+        "ajax": {
+            "url": "http://localhost:8888/tmsession",
+            dataSrc: ''
+        },
+        "columns": [
+            {"data": "student.id"},
+            {"data": "student.name"},
+            {"data": "sessionType"},
+            {"data": "sessionDate"}
+            //{"data": "id"}
+            ]
+    });
+    //$('.dataTables_length').addClass('bs-select');
 
-    //Edit row buttons
-    // $('.dt-edit').each(function () {
-    //     console.log("clicked")
-        $('.dt-edit').on('click', function(evt){
-            $this = $(this);
-            var dtRow = $this.parents('tr');
-            console.log(dtRow[0].cells[3].innerHTML)
+    $('#dtBasicExample').on( 'click', 'tbody tr', function () {
+        console.log(table.row(this).data());
 
-            $('#studentID').val(dtRow[0].cells[0].innerHTML) ;
-            $('#studentName').val(dtRow[0].cells[1].innerHTML) ;
-            // $('#tmSessionType').text(dtRow[0].cells[2].innerHTML);
-            $('#sessionDate').val(dtRow[0].cells[3].innerHTML);
+         tmSessionId = table.row(this).data().id;
+        $('#studentID').val(table.row(this).data().student.id)
+        $('#studentName').val(table.row(this).data().student.name)
+        //$('#tmSessionType').val(table.row(this).data().sessionType)
+        $('#sessionDate').val(table.row(this).data().sessionDate)
 
-            $('#myModal').modal('show');
-        });
+        // $('#tmSessionType').text(dtRow[0].cells[2].innerHTML);
+        //
+
+
+        $('#myModal').modal('show');
+
+    } );
+
+
+    //Update Ajax
+    $('#updateSession').on('click', function () {
+
+        var studentIdInput = $("#studentID").val();
+        var sessionTypeInput = $("#tmSessionType").val();
+        var sessionDateInput = $("#sessionDate").val()
+        console.log(studentIdInput);
+        console.log(sessionTypeInput);
+        console.log(sessionDateInput);
+
+        var student = {id: studentIdInput}
+        var objectToSend = {sessionDate: sessionDateInput, sessionType: sessionTypeInput, student: student}
+
+
+        var tmSession = JSON.stringify(objectToSend);
+
+        console.log(tmSession)
+
+
+        $.ajax({
+            //url: contextRoot + '/employee/add',
+            url: "http://localhost:8888/tmsession/update/" + tmSessionId,
+            type: 'PUT',
+            data: tmSession,
+            contentType: 'application/json',   // Sends
+            success: function (session) {
+                alert("success");
+                $('#myModal').modal('hide');
+            },
+            error: function (e) {
+                alert(e);
+            }
+        })
+
+    })
+
+
+    //Delete
+    $('#deleteSession').on('click', function () {
+
+
+        $.ajax({
+            //url: contextRoot + '/employee/add',
+            url: "http://localhost:8888/tmsession/delete/" + tmSessionId,
+            type: 'DELETE',
+
+           // contentType: 'application/json',   // Sends
+            success: function () {
+                alert("success");
+                $('#myModal').modal('hide');
+            },
+            error: function (e) {
+                alert(e);
+            }
+        })
+
+    })
+
     // });
 
-    //Delete buttons
-    // $('.dt-delete').each(function () {
-        $('.dt-delete').on('click', function(evt){
-            $this = $(this);
-            var dtRow = $this.parents('tr');
-            if(confirm("Are you sure to delete this row?")){
-                var table = $('#dtBasicExample').DataTable();
-                table.row(dtRow[0].rowIndex-1).remove().draw( false );
-                window.location="sessions"
-            }
-        });
     // });
     $('#myModal').on('hidden.bs.modal', function (evt) {
         $('.modal .modal-body').empty();
-        window.location="sessions"
+        window.location = "sessions"
     });
 });
