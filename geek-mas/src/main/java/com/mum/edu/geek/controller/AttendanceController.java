@@ -31,8 +31,9 @@ public class AttendanceController {
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
 
         try{
-            service.saveAutoFile(FileUtil.readFile(file));
+            service.saveAutoFile(FileUtil.readFileFaster(file));
         }catch (Exception ex){
+            ex.printStackTrace();
             throw new GeneralException(ex.getMessage(),"Invalid information, check the content of each column");
         }
     }
@@ -45,7 +46,7 @@ public class AttendanceController {
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
 
         try{
-            service.saveManualFile(FileUtil.readFile(file));
+            service.saveManualFile(FileUtil.readFileFaster(file));
         }catch (Exception ex){
             throw new GeneralException(ex.getMessage(),"Invalid information, check the content of each column");
         }
