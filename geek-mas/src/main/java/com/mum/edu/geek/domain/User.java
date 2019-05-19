@@ -1,8 +1,6 @@
 package com.mum.edu.geek.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -13,8 +11,10 @@ public class User implements Serializable {
     private String username;
     @Column(length = 30)
     private String password;
-    @Column(nullable = false)
-    private Boolean admin;
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Role role;
 
     public String getUsername() {
         return username;
@@ -32,12 +32,24 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Boolean getAdmin() {
-        return admin;
+    public Role getRole() {
+        return role;
     }
 
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public boolean isAdmin(){
+        return role.equals(Role.ADMIN);
+    }
+
+    public boolean isStudent(){
+        return role.equals(Role.STUDENT);
+    }
+
+    public boolean isFaculty(){
+        return role.equals(Role.FACULTY);
     }
 
     @Override
@@ -57,7 +69,7 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
-                ", admin=" + admin +
                 '}';
     }
+
 }

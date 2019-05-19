@@ -6,13 +6,18 @@ function upload(url){
         enctype:"multipart/form-data",
         url: "http://localhost:8888/"+url,
         data: fileContent,
+        headers: {
+            "token":localStorage.getItem("token")
+        },
         processData: false,
         contentType: false,
         success: function(data, status, xhr) {
             $("#sucess").text("Success");
+            $("#error").text("");
         },
         error: function(request, status, error){
-            $("#error").text(request.responseJSON.message);
+            $("#sucess").text("");
+            $("#error").text(request.responseJSON.userMessage);
         }
     });
 

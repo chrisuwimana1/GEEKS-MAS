@@ -12,7 +12,7 @@
 
 
                 <li class="active"><a th:href="@{/add/session}">Add TM Session</a></li>
-                <li><a href="#upSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Upload</a>
+                <li id="menuUpload"><a href="#upSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Upload</a>
                     <ul class="collapse list-unstyled" id="upSubmenu">
                         <li><a th:href="@{/attendance/uploadAuto}">Automatic File</a></li>
                         <li><a th:href="@{/attendance/uploadManual}">Manual File</a></li>
@@ -24,10 +24,10 @@
                         <li>
                             <a th:href="@{/student/attendance}">Student attendance</a>
                         </li>
-                        <li>
+                        <li id="menuReportByEntry">
                             <a th:href="@{/entry/report}">Report By Entry</a>
                         </li>
-                        <li>
+                        <li id="menuReportByFaculty">
                             <a th:href="@{/faculty/report}">Faculty report</a>
                         </li>
                     </ul>
