@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/dashboard_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="col-xs-12 col-sm-9" id="attendance-page" layout:fragment="main-content">
+
+    <div  style="margin:0 auto; width: 50%">
+        <h2>Manual Format File</h2>
+        <img th:src="@{/resource/img/upload.png}">
+
+        <form  >
+
+            <label  for="file">
+                <input type="file" name="file" id="file">
+                <div id="sucess" style="color: green"></div>
+                <div id="error" style="color: red"></div>
+            </label>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="upload('uploadManualFile')" >Submit</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script th:src="@{/resource/js/upload.js}"> </script>
+
+</div>
+
+
+
+</body>
+</html>

@@ -17,5 +17,4 @@ public class FileUtil {
         Files.delete(path);
         return list;
     }
-
 }

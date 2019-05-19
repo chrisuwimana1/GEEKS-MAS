@@ -12,5 +12,5 @@ import java.util.stream.Stream;
 @Repository
 public interface LocationRepository extends JpaRepository<Location,Integer> {
 
-    public List<Location> findByName(String location);
+    List<Location> findByName(String location);
 }

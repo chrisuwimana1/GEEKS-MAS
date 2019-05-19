@@ -1,6 +1,5 @@
 package com.mum.edu.geek.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -17,28 +16,16 @@ public class Student implements Serializable {
     private String name;
     @NaturalId
     private Long barCodeId;
-
-    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
-
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     private Entry entry;
-
-    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Enroll> enrollList;
-
-    @OneToMany( mappedBy = "student")
-    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<TmSession> tmSessionList;
-
-    public Student(){}
-
-    public Student(Integer id){
-        this.id = id;
-    }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<Attendance> attendanceList;
 
     public int getId() {
         return id;
@@ -80,6 +67,29 @@ public class Student implements Serializable {
         this.entry = entry;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setBarCodeId(Long barCodeId) {
+        this.barCodeId = barCodeId;
+    }
+
+    public List<Enroll> getEnrollList() {
+        return enrollList;
+    }
+
+    public void setEnrollList(List<Enroll> enrollList) {
+        this.enrollList = enrollList;
+    }
+
+    public List<Attendance> getAttendanceList() {
+        return attendanceList;
+    }
+
+    public void setAttendanceList(List<Attendance> attendanceList) {
+        this.attendanceList = attendanceList;
+    }
 
     @Override
     public boolean equals(Object o) {
