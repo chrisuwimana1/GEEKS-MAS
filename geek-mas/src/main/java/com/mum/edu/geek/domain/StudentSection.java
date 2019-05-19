@@ -11,12 +11,15 @@ public class StudentSection implements Serializable {
     private String studentName;
     private Integer possible;
     private Integer attended;
+    private Integer cancelledSession;
     private Integer blockId;
+    private String blockName;
     private Integer sectionId;
     private String courseId;
     private String courseName;
     private Integer possibleCumul;
     private Integer attendedCumul;
+    private Integer cancelledSessionCumul;
 
     public Integer getStudentId() {
         return studentId;
@@ -98,6 +101,30 @@ public class StudentSection implements Serializable {
         this.attendedCumul = attendedCumul;
     }
 
+    public Integer getCancelledSessionCumul() {
+        return cancelledSessionCumul;
+    }
+
+    public void setCancelledSessionCumul(Integer cancelledSessionCumul) {
+        this.cancelledSessionCumul = cancelledSessionCumul;
+    }
+
+    public Integer getCancelledSession() {
+        return cancelledSession;
+    }
+
+    public void setCancelledSession(Integer cancelledSession) {
+        this.cancelledSession = cancelledSession;
+    }
+
+    public String getBlockName() {
+        return blockName;
+    }
+
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -114,7 +141,7 @@ public class StudentSection implements Serializable {
 
     @Override
     public String toString() {
-        return "StudentSection{" +
+        return "StudentSectionRepository{" +
                 "studentId=" + studentId +
                 ", studentName='" + studentName + '\'' +
                 ", possible=" + possible +

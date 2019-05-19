@@ -16,23 +16,12 @@ public class Block implements Serializable {
     @Column(nullable = false, length = 20)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
-    private List<CancelledSession> cancelledSessionList;
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<CancelledSession> getCancelledSessionList() {
-        return cancelledSessionList;
-    }
-
-    public void setCancelledSessionList(List<CancelledSession> cancelledSession) {
-        this.cancelledSessionList = cancelledSession;
     }
 
     public Integer getId() {
@@ -61,7 +50,6 @@ public class Block implements Serializable {
         return "Block{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", cancelledSessionList=" + cancelledSessionList +
                 '}';
     }
 }

@@ -1,5 +1,6 @@
 --Insert admin
 
+
 insert into user(username,admin,password) values('admin', true,'123456');
 
 --Insert entries
@@ -217,22 +218,22 @@ insert into student (id,user_username,bar_code_id,name,entry_id) values(10099,'1
 
 --Insert courses
 
-insert into course (id,name,number_of_session,number_of_week) values ('CS401','Modern Practice Programming',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS425','Software Engineering',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS472','Web Programming',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS525','Advanced Software Development',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS435','Algorithms',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS471','Parallel Programming',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS488','Big Data Analytics',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS544','Enterprise Architecture',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS422','Database Management Systems',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS545','Web Application Architecture',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS582','Machine Learning',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS523','Big Data Technology',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('MGT5341','Career Strategies for Information Technology',0,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS390','Fundamental Programming Practices',22,4);
-insert into course (id,name,number_of_session,number_of_week) values ('FOR506B','STC Pt2 Leadership for Tech Managers',10,2);
-insert into course (id,name,number_of_session,number_of_week) values ('FOR506A','STC Pt1',10,2);
+insert into course (id,name,number_of_session,number_of_week) values ('CS401','Modern Practice Programming',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS425','Software Engineering',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS472','Web Programming',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS525','Advanced Software Development',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS435','Algorithms',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS471','Parallel Programming',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS488','Big Data Analytics',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS544','Enterprise Architecture',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS422','Database Management Systems',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS545','Web Application Architecture',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS582','Machine Learning',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS523','Big Data Technology',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('MGT53412','Career Strategies for Information Technology',21,4);
+insert into course (id,name,number_of_session,number_of_week) values ('CS390','Fundamental Programming Practices',25,4);
+insert into course (id,name,number_of_session,number_of_week) values ('FOR506B','STC Pt2 Leadership for Tech Managers',14,2);
+insert into course (id,name,number_of_session,number_of_week) values ('FOR506A','STC Pt1',14,2);
 
 --Insert location
 
@@ -292,21 +293,21 @@ insert into faculty (name,user_username) values('Michael Zijlstra','mzijlstra@cs
 
 --Insert sections
 
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-04-29',1,'CS401',1);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M113','2019-04-29',1,'CS425',2);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-04-29',1,'CS472',3);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M115','2019-04-29',1,'CS525',4);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M218','2019-04-29',1,'CS401',5);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M219','2019-04-29',1,'CS544',6);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('V29','2019-04-29',1,'CS523',7);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-04-29',5,'CS401',1);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M113','2019-04-29',5,'CS425',2);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-04-29',5,'CS472',3);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M115','2019-04-29',5,'CS525',4);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M218','2019-04-29',5,'CS401',5);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M219','2019-04-29',5,'CS544',6);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('V29','2019-04-29',5,'CS523',7);
 
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-05-27',2,'FOR506A',5);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M113','2019-05-27',2,'CS545',3);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-05-27',2,'CS523',6);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M115','2019-05-27',2,'CS544',2);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M218','2019-05-27',2,'CS435',1);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M219','2019-05-27',2,'CS472',4);
-insert into section (room_id,start_date,block_id,course_id,faculty_id) values('V29','2019-05-27',2,'CS425',7);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-05-27',6,'CS422',5);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M113','2019-05-27',6,'CS545',3);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M105','2019-05-27',6,'CS523',6);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M115','2019-05-27',6,'CS544',2);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M218','2019-05-27',6,'CS435',1);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('M219','2019-05-27',6,'CS472',4);
+insert into section (room_id,start_date,block_id,course_id,faculty_id) values('V29','2019-05-27',6,'CS425',7);
 
 --Insert enroll
 
@@ -473,57 +474,74 @@ insert into enroll (enroll_date,section_id,student_id) values('2019-03-01',11,10
 
 --Insert cancelled session
 
-insert into cancelled_session(session_date,block_id) values('2019-05-04',2);
-insert into cancelled_session(session_date,block_id) values('2019-05-05',2);
-insert into cancelled_session(session_date,block_id) values('2019-05-06',2);
+insert into cancelled_session(session_date) values('2019-05-04');
+insert into cancelled_session(session_date) values('2019-05-05');
+insert into cancelled_session(session_date) values('2019-05-06');
+insert into cancelled_session(session_date) values('2019-05-06');
+insert into cancelled_session(session_date) values('2019-01-01');
 
-drop table student_entry if exists ;
-drop table STUDENT_SECTION if exists ;
-drop table STUDENT_FACULTY if exists ;
+drop table if exists STUDENT_ENTRY;
+drop table if exists STUDENT_SECTION ;
+drop table if exists STUDENT_FACULTY ;
+drop view if exists REPORTING;
 
-create view reporting as (SELECT
-                              ATTENDANCE_DATE,ATTENDANCE_TIME,ATTENDANCE.LOCATION_ID ATTENDANCE_LOCATION_ID,STUDENT.ID STUDENT_ID,BAR_CODE_ID,
-                              STUDENT.NAME STUDENT_NAME,STUDENT.USER_USERNAME STUDENT_USER_USERNAME,
-                              LOCATION.NAME LOCATION_NAME, BLOCK.ID BLOCK_ID, BLOCK.NAME BLOCK_NAME,
-                              ENTRY.ID ENTRY_ID,ENTRY.NAME ENTRY_NAME, ENROLL_DATE, SECTION.ID SECTION_ID, ROOM_ID, SECTION.START_DATE SECTION_START_DATE,
-                              COURSE.ID COURSE_ID, COURSE.NAME COURSE_NAME,
-                              NUMBER_OF_SESSION, NUMBER_OF_WEEK, 	FACULTY.ID FACULTY_ID, FACULTY.NAME FACULTY_NAME, FACULTY.USER_USERNAME FACULTY_USER_USERNAME,
-                              TM_SESSION.SESSION_DATE TM_SESSION_DATE, TM_SESSION.SESSION_TYPE TM_SESSION_TYPE, TM_SESSION.LOCATION_ID TM_SESSION_LOCATION_ID
-                          FROM ATTENDANCE
-                                   INNER JOIN STUDENT ON STUDENT.ID = ATTENDANCE.STUDENT_ID
-                                   INNER JOIN LOCATION ON LOCATION.ID = ATTENDANCE.LOCATION_ID
-                                   INNER JOIN ENTRY ON ENTRY.ID = STUDENT.ENTRY_ID
-                                   INNER JOIN ENROLL ON ENROLL.STUDENT_ID = STUDENT.ID
-                                   INNER JOIN SECTION ON SECTION.ID = ENROLL.SECTION_ID
-                                   INNER JOIN BLOCK ON BLOCK.ID = SECTION.BLOCK_ID
-                                   INNER JOIN COURSE ON COURSE.ID = SECTION.COURSE_ID
-                                   INNER JOIN FACULTY ON FACULTY.ID = SECTION.FACULTY_ID
-                                   INNER JOIN USER ON STUDENT.USER_USERNAME = USER.USERNAME
-                                   LEFT OUTER JOIN TM_SESSION ON TM_SESSION.STUDENT_ID = STUDENT.ID
-                                   WHERE
-                                   ATTENDANCE_DATE BETWEEN SECTION.START_DATE AND SECTION.START_DATE + NUMBER_OF_SESSION
-                                   AND (BLOCK.ID,ATTENDANCE_DATE) NOT IN (SELECT BLOCK_ID,SESSION_DATE FROM CANCELLED_SESSION)
-                                   AND EXTRACT(DAYOFWEEK FROM ATTENDANCE_DATE) <> 7);
+drop view if exists STUDENT_ENTRY;
+drop view if exists STUDENT_SECTION ;
+drop view if exists STUDENT_FACULTY ;
+drop table if exists REPORTING;
+
+CREATE VIEW REPORTING AS (
+    SELECT A.*, (SELECT COUNT(DISTINCT SESSION_DATE)
+                    FROM CANCELLED_SESSION
+                    WHERE SESSION_DATE BETWEEN SECTION_START_DATE AND (SECTION_START_DATE  + NUMBER_OF_SESSION)
+                    AND (DAYOFWEEK(SESSION_DATE)) <> 6) CANCELLED_SESSION
+    FROM (
+             SELECT
+                 ATTENDANCE_DATE,ATTENDANCE_TIME,ATTENDANCE.LOCATION_ID ATTENDANCE_LOCATION_ID,STUDENT.ID STUDENT_ID,BAR_CODE_ID,
+                 STUDENT.NAME STUDENT_NAME,STUDENT.USER_USERNAME STUDENT_USER_USERNAME,
+                 CASE
+                     WHEN (ATTENDANCE_DATE BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + NUMBER_OF_SESSION)) THEN 'IN_BLOCK'
+                     WHEN (ATTENDANCE_DATE NOT BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + NUMBER_OF_SESSION)) THEN 'OUT_BLOCK'
+                 END AS ATTENDANCE_TYPE,
+                 LOCATION.NAME LOCATION_NAME, BLOCK.ID BLOCK_ID, BLOCK.NAME BLOCK_NAME,
+                 ENTRY.ID ENTRY_ID,ENTRY.NAME ENTRY_NAME, ENROLL_DATE, SECTION.ID SECTION_ID, ROOM_ID, SECTION.START_DATE SECTION_START_DATE,
+                 COURSE.ID COURSE_ID, COURSE.NAME COURSE_NAME,
+                 NUMBER_OF_SESSION, NUMBER_OF_WEEK, FACULTY.ID FACULTY_ID, FACULTY.NAME FACULTY_NAME, FACULTY.USER_USERNAME FACULTY_USER_USERNAME,
+                 TM_SESSION.SESSION_DATE TM_SESSION_DATE, TM_SESSION.SESSION_TYPE TM_SESSION_TYPE, TM_SESSION.LOCATION_ID TM_SESSION_LOCATION_ID
+             FROM ATTENDANCE
+                      INNER JOIN STUDENT ON STUDENT.ID = ATTENDANCE.STUDENT_ID
+                      INNER JOIN LOCATION ON LOCATION.ID = ATTENDANCE.LOCATION_ID
+                      INNER JOIN ENTRY ON ENTRY.ID = STUDENT.ENTRY_ID
+                      INNER JOIN ENROLL ON ENROLL.STUDENT_ID = STUDENT.ID
+                      INNER JOIN SECTION ON SECTION.ID = ENROLL.SECTION_ID
+                      INNER JOIN BLOCK ON BLOCK.ID = SECTION.BLOCK_ID
+                      INNER JOIN COURSE ON COURSE.ID = SECTION.COURSE_ID
+                      INNER JOIN FACULTY ON FACULTY.ID = SECTION.FACULTY_ID
+                      INNER JOIN USER ON STUDENT.USER_USERNAME = USER.USERNAME
+                      LEFT OUTER JOIN TM_SESSION ON TM_SESSION.STUDENT_ID = STUDENT.ID
+             WHERE
+               (ATTENDANCE_DATE) NOT IN (SELECT SESSION_DATE FROM CANCELLED_SESSION)
+               AND DAYOFWEEK(ATTENDANCE_DATE) <> 7) A
+);
 
 --Student per entry
 CREATE VIEW STUDENT_ENTRY AS(
-    SELECT STUDENT_ID, STUDENT_NAME, SUM(POSSIBLE) POSSIBLE, SUM(ATTENDED) ATTENDED, ENTRY_ID ENTRY_ID
+    SELECT STUDENT_ID, STUDENT_NAME, SUM(POSSIBLE) POSSIBLE, SUM(CANCELLED_SESSION) CANCELLED_SESSION, SUM(ATTENDED) ATTENDED, ENTRY_ID
     FROM
-        (SELECT STUDENT_ID, STUDENT_NAME, SUM(DISTINCT NUMBER_OF_SESSION) POSSIBLE, COUNT(*) ATTENDED, ENTRY_ID,SECTION_ID FROM REPORTING
-         GROUP BY ENTRY_ID, STUDENT_ID,SECTION_ID)
+        (SELECT STUDENT_ID, STUDENT_NAME, SUM(DISTINCT CANCELLED_SESSION) CANCELLED_SESSION, SUM(DISTINCT NUMBER_OF_SESSION) POSSIBLE, COUNT(*) ATTENDED, ENTRY_ID,SECTION_ID FROM REPORTING
+         GROUP BY ENTRY_ID, STUDENT_ID,SECTION_ID) A
     GROUP BY STUDENT_ID);
 
---Student REPORT
 CREATE VIEW STUDENT_SECTION AS(
-    SELECT A.*, B.POSSIBLE_CUMUL, B.ATTENDED_CUMUL FROM
-        (SELECT STUDENT_ID, STUDENT_NAME, SUM(DISTINCT NUMBER_OF_SESSION) POSSIBLE, COUNT(*) ATTENDED, BLOCK_ID ,BLOCK_NAME,SECTION_ID, COURSE_ID, COURSE_NAME  FROM REPORTING
-        GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) A,
-        (SELECT STUDENT_ID, SUM(POSSIBLE) POSSIBLE_CUMUL, SUM(ATTENDED) ATTENDED_CUMUL
-        FROM (SELECT STUDENT_ID, STUDENT_NAME, BLOCK_NAME, SUM(DISTINCT NUMBER_OF_SESSION) POSSIBLE, COUNT(*) ATTENDED, BLOCK_ID ,SECTION_ID, COURSE_ID, COURSE_NAME  FROM REPORTING
-        GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) GROUP BY STUDENT_ID) B
+    SELECT A.*, B.POSSIBLE_CUMUL, B.CANCELLED_SESSION_CUMUL, B.ATTENDED_CUMUL FROM
+                                                                                  (SELECT STUDENT_ID, STUDENT_NAME, NUMBER_OF_SESSION POSSIBLE, COUNT(*) ATTENDED, CANCELLED_SESSION, BLOCK_ID ,BLOCK_NAME,SECTION_ID, COURSE_ID, COURSE_NAME  FROM REPORTING
+                                                                                   GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) A,
+                                                                                  (SELECT STUDENT_ID, SUM(POSSIBLE) POSSIBLE_CUMUL, SUM(CANCELLED_SESSION) CANCELLED_SESSION_CUMUL, SUM(ATTENDED) ATTENDED_CUMUL
+                                                                                   FROM (SELECT STUDENT_ID, NUMBER_OF_SESSION POSSIBLE, COUNT(*) ATTENDED, BLOCK_ID ,SECTION_ID, CANCELLED_SESSION  FROM REPORTING
+                                                                                         GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) C GROUP BY STUDENT_ID) B
     WHERE A.STUDENT_ID = B.STUDENT_ID);
 
---Faculty report
 CREATE VIEW STUDENT_FACULTY AS(
-    SELECT NUMBER_OF_SESSION POSSIBLE, COUNT(*) ATTENDED, STUDENT_ID, STUDENT_NAME, SECTION_ID, COURSE_NAME , COURSE_ID , SECTION_START_DATE, FACULTY_ID, FACULTY_NAME     FROM REPORTING GROUP BY SECTION_ID , STUDENT_ID ORDER BY STUDENT_ID DESC
+    SELECT NUMBER_OF_SESSION POSSIBLE, CANCELLED_SESSION, COUNT(*) ATTENDED, STUDENT_ID, STUDENT_NAME, SECTION_ID, COURSE_NAME , COURSE_ID , SECTION_START_DATE, FACULTY_ID, FACULTY_NAME
+    FROM REPORTING GROUP BY SECTION_ID , STUDENT_ID ORDER BY STUDENT_ID DESC
 );

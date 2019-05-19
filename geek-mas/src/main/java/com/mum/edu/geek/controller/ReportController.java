@@ -20,49 +20,55 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping(value = "/student_entries", produces = "application/json")
+    @GetMapping(value = "/attendances/entries", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> allEntries() {
         return reportService.findAllEntryStudentsReport();
     }
 
-    @GetMapping(value = "/student_entries/{entryId}", produces = "application/json")
+    @GetMapping(value = "/attendances/entries/{entryId}", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> getEntryStudents(@PathVariable Integer entryId) {
         return reportService.findEntryStudentsReport(entryId);
     }
 
-    @GetMapping(value = "/section_students", produces = "application/json")
+    @GetMapping(value = "/attendances/sections/students", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentSection> allSections() {
         return reportService.findAllSectionStudentsReport();
     }
 
-    @GetMapping(value = "/section_students/{studentId}", produces = "application/json")
+    @GetMapping(value = "/attendances/sections/students/{studentId}", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentSection> getStudent(@PathVariable Integer studentId) {
         return reportService.findByStudentIdReport(studentId);
     }
 
-    @GetMapping(value = "/student_blocks/{blockId}/students/{studentId}", produces = "application/json")
+    @GetMapping(value = "/attendances/blocks/{blockId}/students", produces = "application/json")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<StudentSection> getStudentBlock(@PathVariable Integer blockId) {
+        return reportService.findByBlockIdReport(blockId);
+    }
+
+    @GetMapping(value = "/attendances/blocks/{blockId}/students/{studentId}", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentSection> getStudentBlock(@PathVariable Integer studentId, @PathVariable Integer blockId) {
         return reportService.findByStudentIdAndBlockIdReport(studentId, blockId);
     }
 
-    @GetMapping(value = "/faculty_students", produces = "application/json")
+    @GetMapping(value = "/attendances/faculties", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentFaculty> findAllFacultyStudentsReport() {
         return reportService.findAllFacultyStudentsReport();
     }
 
-    @GetMapping(value = "/student_faculties/{facultyId}", produces = "application/json")
+    @GetMapping(value = "/attendances/faculties/{facultyId}/students", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentFaculty> findByFacultyIdStudentsReport(@PathVariable Integer facultyId) {
         return reportService.findByFacultyIdStudentsReport(facultyId);
     }
 
-    @GetMapping(value = "/student_faculties/{facultyId}/students/{studentId}", produces = "application/json")
+    @GetMapping(value = "/attendances/faculties/{facultyId}/students/{studentId}", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentFaculty> findByFacultyIdAndStudentIdReport(@PathVariable Integer facultyId,@PathVariable  Integer studentId) {
         return reportService.findByFacultyIdAndStudentIdReport(facultyId, studentId);

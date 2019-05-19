@@ -53,6 +53,14 @@ public class Course implements Serializable {
         this.numberOfSession = numberOfSession;
     }
 
+    public void setNumberOfWeek(Integer numberOfWeek) {
+        this.numberOfWeek = numberOfWeek;
+    }
+
+    public void setNumberOfSession(Integer numberOfSession) {
+        this.numberOfSession = numberOfSession;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

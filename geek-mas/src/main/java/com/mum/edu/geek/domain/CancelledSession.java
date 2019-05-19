@@ -14,8 +14,6 @@ public class CancelledSession implements Serializable {
     private Integer id;
     @Column(nullable = false)
     private LocalDate sessionDate;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Block block;
 
     public Integer getId() {
         return id;
@@ -31,14 +29,6 @@ public class CancelledSession implements Serializable {
 
     public void setSessionDate(LocalDate sessionDate) {
         this.sessionDate = sessionDate;
-    }
-
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
     }
 
     @Override

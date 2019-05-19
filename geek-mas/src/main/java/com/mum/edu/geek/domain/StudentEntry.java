@@ -14,6 +14,7 @@ public class StudentEntry implements Serializable {
     private Integer possible;
     private Integer attended;
     private Integer entryId;
+    private Integer cancelledSession;
 
     public String getStudentName() {
         return studentName;
@@ -53,5 +54,13 @@ public class StudentEntry implements Serializable {
 
     public void setEntryId(Integer entryId) {
         this.entryId = entryId;
+    }
+
+    public Integer getCancelledSession() {
+        return cancelledSession;
+    }
+
+    public void setCancelledSession(Integer cancelledSession) {
+        this.cancelledSession = cancelledSession;
     }
 }
