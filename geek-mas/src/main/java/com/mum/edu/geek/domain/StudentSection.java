@@ -2,17 +2,14 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Objects;
 
 @Entity
 public class StudentSection implements Serializable {
     @EmbeddedId
-    private StudentSectionId studentFacultyId;
+    private StudentSectionId studentSectionId;
     private String studentName;
     private Integer numberOfWeeks;
     private Integer totalDaysOff;
@@ -141,7 +138,7 @@ public class StudentSection implements Serializable {
         return tmPercentCumul.round(new MathContext(3));
     }
 
-    public StudentSectionId getStudentFacultyId() {
-        return studentFacultyId;
+    public StudentSectionId getStudentSectionId() {
+        return studentSectionId;
     }
 }
