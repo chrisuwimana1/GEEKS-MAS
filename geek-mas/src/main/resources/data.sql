@@ -1007,12 +1007,13 @@ CREATE VIEW REPORTING AS (
 CREATE VIEW STUDENT_ENTRY AS (
     SELECT STUDENT_ID,
            STUDENT_NAME,
-           SUM(NUMBER_OF_WEEKS)                             NUMBER_OF_WEEKS,
-           SUM(TOTAL_DAYS_OFF)                              TOTAL_DAYS_OFF,
-           SUM(CANCELLED_SESSION)                           CANCELLED_SESSION,
-           SUM(ATTENDED)                                    ATTENDED,
+           SUM(NUMBER_OF_WEEKS)                                                      NUMBER_OF_WEEKS,
+           SUM(TOTAL_DAYS_OFF)                                                       TOTAL_DAYS_OFF,
+           SUM(CANCELLED_SESSION)                                                    CANCELLED_SESSION,
+           SUM(ATTENDED)                                                             ATTENDED,
            SUM(ATTENDED) * 100 / (SUM(NUMBER_OF_WEEKS) * 6 - SUM(CANCELLED_SESSION)) TM_PERCENT,
-           ENTRY_ID
+           ENTRY_ID,
+           ENTRY_NAME
     FROM (SELECT STUDENT_ID,
                  STUDENT_NAME,
                  SUM(DISTINCT CANCELLED_SESSION) CANCELLED_SESSION,
@@ -1020,6 +1021,7 @@ CREATE VIEW STUDENT_ENTRY AS (
                  TOTAL_DAYS_OFF,
                  COUNT(*)                        ATTENDED,
                  ENTRY_ID,
+                 ENTRY_NAME,
                  SECTION_ID
           FROM REPORTING
           WHERE ATTENDANCE_TYPE = 'IN_BLOCK'
@@ -1032,11 +1034,13 @@ CREATE VIEW STUDENT_SECTION AS (
            B.TOTAL_DAYS_OFF_CUMUL,
            B.CANCELLED_SESSION_CUMUL,
            B.ATTENDED_CUMUL,
+           B.ATTENDED_CUMUL * 100 / (B.NUMBER_OF_WEEKS_CUMUL * 6 - B.CANCELLED_SESSION_CUMUL) TM_PERCENT_CUMUL,
            B.EXTRA_POINT_DAY_CUMUL,
            B.EXTRA_POINT_CUMUL
     FROM (SELECT STUDENT_ID,
                  STUDENT_NAME,
                  NUMBER_OF_WEEKS,
+                 COUNT(*) * 100 / (NUMBER_OF_WEEKS * 6 - CANCELLED_SESSION) TM_PERCENT,
                  TOTAL_DAYS_OFF,
                  COUNT(*)             ATTENDED,
                  SUM(EXTRA_POINT_DAY) EXTRA_POINT_DAYS,
@@ -1110,7 +1114,10 @@ CREATE VIEW STUDENT_FACULTY AS (
                ELSE 0
                END AS           EXTRA_POINT,
            STUDENT_NAME,
+           COUNT(*) * 100 / (NUMBER_OF_WEEKS * 6 - CANCELLED_SESSION) TM_PERCENT,
            SECTION_ID,
+           BLOCK_ID,
+           BLOCK_NAME,
            COURSE_NAME,
            COURSE_ID,
            SECTION_START_DATE,

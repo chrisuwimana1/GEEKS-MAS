@@ -15,6 +15,7 @@ public class StudentEntry implements Serializable {
     private Integer totalDaysOff;
     private Integer attended;
     private Integer entryId;
+    private String entryName;
     private Integer cancelledSession;
     private BigDecimal tmPercent;
 
@@ -84,5 +85,13 @@ public class StudentEntry implements Serializable {
 
     public Integer getTotalPossibleDays() {
         return getNumberOfWeeks() * 6 - getCancelledSession();
+    }
+
+    public String getEntryName() {
+        return entryName;
+    }
+
+    public void setEntryName(String entryName) {
+        this.entryName = entryName;
     }
 }

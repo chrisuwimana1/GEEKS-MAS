@@ -18,6 +18,7 @@ public class ExceptionInterceptor {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorDTO errorHandle(Exception ex){
+
         return new ErrorDTO(ex.getMessage(),ex.getMessage());
     }
 
@@ -26,6 +27,7 @@ public class ExceptionInterceptor {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorDTO generalHandle(GeneralException ex){
+
         return new ErrorDTO(ex.getCustomMessage(),ex.getMessage());
     }
 
@@ -33,7 +35,7 @@ public class ExceptionInterceptor {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ResultDTO businessHandle(BusinessException ex){
-        System.out.println("aa");
+        //System.out.println("aa");
         return new ResultDTO(ex.getMessage(),false);
     }
 
