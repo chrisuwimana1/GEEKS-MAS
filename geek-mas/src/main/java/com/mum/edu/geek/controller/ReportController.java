@@ -1,11 +1,6 @@
 package com.mum.edu.geek.controller;
 
 import com.mum.edu.geek.domain.*;
-import com.mum.edu.geek.exception.BusinessException;
-import com.mum.edu.geek.domain.Role;
-import com.mum.edu.geek.domain.StudentEntry;
-import com.mum.edu.geek.domain.StudentFaculty;
-import com.mum.edu.geek.domain.StudentSection;
 import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.ReportService;
 import com.mum.edu.geek.util.JwtUtil;
@@ -70,7 +65,7 @@ public class ReportController {
             @PathVariable Integer studentId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         List<StudentSection> list = reportService.findByStudentIdReport(studentId);
 
         if (list.isEmpty()) return new StudentSection();
@@ -135,7 +130,7 @@ public class ReportController {
             @PathVariable Integer studentId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByStudentIdDetailsReport(studentId);
     }
 }

@@ -1,22 +1,13 @@
 package com.mum.edu.geek.controller;
 
-import com.mum.edu.geek.domain.Role;
 import com.mum.edu.geek.domain.User;
-import com.mum.edu.geek.dto.ErrorDTO;
-import com.mum.edu.geek.exception.BusinessException;
 import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.UserService;
 import com.mum.edu.geek.util.JwtUtil;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Key;
-import java.util.Arrays;
 import java.util.Optional;
 
 @RestController
