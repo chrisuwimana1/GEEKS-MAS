@@ -2,6 +2,7 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -25,6 +26,8 @@ public class StudentSection implements Serializable {
     private Integer attendedCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
+    @Transient
+    private Integer totalDays;
 
     public String getStudentName() {
         return studentName;
@@ -135,11 +138,11 @@ public class StudentSection implements Serializable {
     }
 
     public BigDecimal getTmPercent() {
-        return tmPercent.round(new MathContext(3));
+        return tmPercent == null ? tmPercent : tmPercent.round(new MathContext(3));
     }
 
     public BigDecimal getTmPercentCumul() {
-        return tmPercentCumul.round(new MathContext(3));
+        return tmPercentCumul == null ? tmPercentCumul : tmPercentCumul.round(new MathContext(3));
     }
 
     public StudentSectionId getStudentSectionId() {
