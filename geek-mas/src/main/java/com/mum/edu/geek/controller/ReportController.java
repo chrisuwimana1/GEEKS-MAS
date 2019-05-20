@@ -87,14 +87,6 @@ public class ReportController {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
 
-
-        List<StudentFaculty> list = reportService.findAllFacultyStudentsReport();
-
-        for (StudentFaculty item : list){
-            System.out.println(item);
-        }
-
-
         return reportService.findAllFacultyStudentsReport();
     }
 

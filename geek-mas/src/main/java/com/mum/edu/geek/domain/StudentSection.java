@@ -1,5 +1,6 @@
 package com.mum.edu.geek.domain;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -10,8 +11,8 @@ import java.util.Objects;
 
 @Entity
 public class StudentSection implements Serializable {
-    @Id
-    private Integer studentId;
+    @EmbeddedId
+    private StudentSectionId studentFacultyId;
     private String studentName;
     private Integer numberOfWeeks;
     private Integer totalDaysOff;
@@ -20,7 +21,6 @@ public class StudentSection implements Serializable {
     private Integer cancelledSession;
     private Integer blockId;
     private String blockName;
-    private Integer sectionId;
     private String courseId;
     private String courseName;
     private Integer numberOfWeeksCumul;
@@ -28,13 +28,6 @@ public class StudentSection implements Serializable {
     private Integer attendedCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
 
     public String getStudentName() {
         return studentName;
@@ -58,14 +51,6 @@ public class StudentSection implements Serializable {
 
     public void setBlockId(Integer blockId) {
         this.blockId = blockId;
-    }
-
-    public Integer getSectionId() {
-        return sectionId;
-    }
-
-    public void setSectionId(Integer sectionId) {
-        this.sectionId = sectionId;
     }
 
     public String getCourseId() {
@@ -156,19 +141,7 @@ public class StudentSection implements Serializable {
         return tmPercentCumul.round(new MathContext(3));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof StudentSection)) return false;
-        StudentSection that = (StudentSection) o;
-        return Objects.equals(getStudentId(), that.getStudentId()) &&
-                Objects.equals(getSectionId(), that.getSectionId());
+    public StudentSectionId getStudentFacultyId() {
+        return studentFacultyId;
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getStudentId(), getSectionId());
-    }
-
-
 }

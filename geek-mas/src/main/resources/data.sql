@@ -935,11 +935,6 @@ values ('2019-01-01');
 drop table if exists STUDENT_ENTRY;
 drop table if exists STUDENT_SECTION;
 drop table if exists STUDENT_FACULTY;
-drop view if exists REPORTING;
-
-drop view if exists STUDENT_ENTRY;
-drop view if exists STUDENT_SECTION;
-drop view if exists STUDENT_FACULTY;
 drop table if exists REPORTING;
 
 CREATE VIEW REPORTING AS (
