@@ -28,6 +28,7 @@ public class ReportController {
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> allEntries(
             @RequestHeader("token") String token) {
+        System.out.println("token = " + token);
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findAllEntryStudentsReport();

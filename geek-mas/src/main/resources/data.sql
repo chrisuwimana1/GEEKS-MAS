@@ -218,22 +218,22 @@ insert into student (id,user_username,bar_code_id,name,entry_id) values(10099,'1
 
 --Insert courses
 
-insert into course (id,name,number_of_session,number_of_week) values ('CS401','Modern Practice Programming',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS425','Software Engineering',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS472','Web Programming',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS525','Advanced Software Development',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS435','Algorithms',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS471','Parallel Programming',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS488','Big Data Analytics',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS544','Enterprise Architecture',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS422','Database Management Systems',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS545','Web Application Architecture',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS582','Machine Learning',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS523','Big Data Technology',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('MGT53412','Career Strategies for Information Technology',21,4);
-insert into course (id,name,number_of_session,number_of_week) values ('CS390','Fundamental Programming Practices',25,4);
-insert into course (id,name,number_of_session,number_of_week) values ('FOR506B','STC Pt2 Leadership for Tech Managers',14,2);
-insert into course (id,name,number_of_session,number_of_week) values ('FOR506A','STC Pt1',14,2);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS401','Modern Practice Programming',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS425','Software Engineering',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS472','Web Programming',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS525','Advanced Software Development',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS435','Algorithms',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS471','Parallel Programming',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS488','Big Data Analytics',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS544','Enterprise Architecture',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS422','Database Management Systems',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS545','Web Application Architecture',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS582','Machine Learning',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS523','Big Data Technology',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (0,'MGT53412','Career Strategies for Information Technology',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (2,'CS390','Fundamental Programming Practices',4);
+insert into course (total_days_off,id,name,number_of_weeks) values (0,'FOR506B','STC Pt2 Leadership for Tech Managers',2);
+insert into course (total_days_off,id,name,number_of_weeks) values (0,'FOR506A','STC Pt1',2);
 
 --Insert location
 
@@ -492,21 +492,27 @@ drop table if exists REPORTING;
 
 CREATE VIEW REPORTING AS (
     SELECT A.*, (SELECT COUNT(DISTINCT SESSION_DATE)
-                    FROM CANCELLED_SESSION
-                    WHERE SESSION_DATE BETWEEN SECTION_START_DATE AND (SECTION_START_DATE  + NUMBER_OF_SESSION)
-                    AND (DAYOFWEEK(SESSION_DATE)) <> 6) CANCELLED_SESSION
+                 FROM CANCELLED_SESSION
+                 WHERE SESSION_DATE BETWEEN SECTION_START_DATE AND (SECTION_START_DATE  + NUMBER_OF_WEEKS * 7 - 1)
+                   AND (DAYOFWEEK(SESSION_DATE)) <> 1) CANCELLED_SESSION
     FROM (
              SELECT
                  ATTENDANCE_DATE,ATTENDANCE_TIME,ATTENDANCE.LOCATION_ID ATTENDANCE_LOCATION_ID,STUDENT.ID STUDENT_ID,BAR_CODE_ID,
                  STUDENT.NAME STUDENT_NAME,STUDENT.USER_USERNAME STUDENT_USER_USERNAME,
                  CASE
-                     WHEN (ATTENDANCE_DATE BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + NUMBER_OF_SESSION)) THEN 'IN_BLOCK'
-                     WHEN (ATTENDANCE_DATE NOT BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + NUMBER_OF_SESSION)) THEN 'OUT_BLOCK'
-                 END AS ATTENDANCE_TYPE,
+                     WHEN (ATTENDANCE_DATE BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + NUMBER_OF_WEEKS * 7 - 1)) THEN 'IN_BLOCK'
+                     WHEN ((ATTENDANCE_DATE NOT BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + NUMBER_OF_WEEKS * 7 - 1))) THEN 'OUT_BLOCK'
+                     END AS ATTENDANCE_TYPE,
+                 CASE
+                     WHEN ((DAYOFWEEK(ATTENDANCE_DATE) <> 1)
+                               AND (ATTENDANCE_DATE NOT IN (SELECT SESSION_DATE FROM CANCELLED_SESSION))
+                               AND (ATTENDANCE_DATE BETWEEN SECTION.START_DATE AND (SECTION.START_DATE + (NUMBER_OF_WEEKS * 7 - TOTAL_DAYS_OFF - 2)))) THEN 1
+                     ELSE 0
+                 END AS EXTRA_POINT,
                  LOCATION.NAME LOCATION_NAME, BLOCK.ID BLOCK_ID, BLOCK.NAME BLOCK_NAME,
                  ENTRY.ID ENTRY_ID,ENTRY.NAME ENTRY_NAME, ENROLL_DATE, SECTION.ID SECTION_ID, ROOM_ID, SECTION.START_DATE SECTION_START_DATE,
                  COURSE.ID COURSE_ID, COURSE.NAME COURSE_NAME,
-                 NUMBER_OF_SESSION, NUMBER_OF_WEEK, FACULTY.ID FACULTY_ID, FACULTY.NAME FACULTY_NAME, FACULTY.USER_USERNAME FACULTY_USER_USERNAME,
+                 NUMBER_OF_WEEKS, TOTAL_DAYS_OFF, FACULTY.ID FACULTY_ID, FACULTY.NAME FACULTY_NAME, FACULTY.USER_USERNAME FACULTY_USER_USERNAME,
                  TM_SESSION.SESSION_DATE TM_SESSION_DATE, TM_SESSION.SESSION_TYPE TM_SESSION_TYPE
              FROM ATTENDANCE
                       INNER JOIN STUDENT ON STUDENT.ID = ATTENDANCE.STUDENT_ID
@@ -520,28 +526,28 @@ CREATE VIEW REPORTING AS (
                       INNER JOIN USER ON STUDENT.USER_USERNAME = USER.USERNAME
                       LEFT OUTER JOIN TM_SESSION ON TM_SESSION.STUDENT_ID = STUDENT.ID
              WHERE
-               (ATTENDANCE_DATE) NOT IN (SELECT SESSION_DATE FROM CANCELLED_SESSION)
-               AND DAYOFWEEK(ATTENDANCE_DATE) <> 6) A
+                     ATTENDANCE_DATE NOT IN (SELECT SESSION_DATE FROM CANCELLED_SESSION)
+               AND DAYOFWEEK(ATTENDANCE_DATE) <> 1) A
 );
 
 --Student per entry
 CREATE VIEW STUDENT_ENTRY AS(
-    SELECT STUDENT_ID, STUDENT_NAME, SUM(POSSIBLE) POSSIBLE, SUM(CANCELLED_SESSION) CANCELLED_SESSION, SUM(ATTENDED) ATTENDED, ENTRY_ID
+    SELECT STUDENT_ID, STUDENT_NAME, SUM(NUMBER_OF_WEEKS) NUMBER_OF_WEEKS, SUM(TOTAL_DAYS_OFF) TOTAL_DAYS_OFF, SUM(CANCELLED_SESSION) CANCELLED_SESSION, SUM(ATTENDED) ATTENDED, ENTRY_ID
     FROM
-        (SELECT STUDENT_ID, STUDENT_NAME, SUM(DISTINCT CANCELLED_SESSION) CANCELLED_SESSION, SUM(DISTINCT NUMBER_OF_SESSION) POSSIBLE, COUNT(*) ATTENDED, ENTRY_ID,SECTION_ID FROM REPORTING
+        (SELECT STUDENT_ID, STUDENT_NAME, SUM(DISTINCT CANCELLED_SESSION) CANCELLED_SESSION, NUMBER_OF_WEEKS, TOTAL_DAYS_OFF, COUNT(*) ATTENDED, ENTRY_ID,SECTION_ID FROM REPORTING WHERE ATTENDANCE_TYPE = 'IN_BLOCK'
          GROUP BY ENTRY_ID, STUDENT_ID,SECTION_ID) A
     GROUP BY STUDENT_ID);
 
 CREATE VIEW STUDENT_SECTION AS(
-    SELECT A.*, B.POSSIBLE_CUMUL, B.CANCELLED_SESSION_CUMUL, B.ATTENDED_CUMUL FROM
-                                                                                  (SELECT STUDENT_ID, STUDENT_NAME, NUMBER_OF_SESSION POSSIBLE, COUNT(*) ATTENDED, CANCELLED_SESSION, BLOCK_ID ,BLOCK_NAME,SECTION_ID, COURSE_ID, COURSE_NAME  FROM REPORTING
-                                                                                   GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) A,
-                                                                                  (SELECT STUDENT_ID, SUM(POSSIBLE) POSSIBLE_CUMUL, SUM(CANCELLED_SESSION) CANCELLED_SESSION_CUMUL, SUM(ATTENDED) ATTENDED_CUMUL
-                                                                                   FROM (SELECT STUDENT_ID, NUMBER_OF_SESSION POSSIBLE, COUNT(*) ATTENDED, BLOCK_ID ,SECTION_ID, CANCELLED_SESSION  FROM REPORTING
-                                                                                         GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) C GROUP BY STUDENT_ID) B
+    SELECT A.*, B.NUMBER_OF_WEEKS_CUMUL, B.TOTAL_DAYS_OFF_CUMUL, B.CANCELLED_SESSION_CUMUL, B.ATTENDED_CUMUL FROM
+       (SELECT STUDENT_ID, STUDENT_NAME, NUMBER_OF_WEEKS, TOTAL_DAYS_OFF, COUNT(*) ATTENDED, CANCELLED_SESSION, BLOCK_ID ,BLOCK_NAME,SECTION_ID, COURSE_ID, COURSE_NAME  FROM REPORTING WHERE ATTENDANCE_TYPE = 'IN_BLOCK'
+        GROUP BY BLOCK_ID, STUDENT_ID,SECTION_ID ORDER BY STUDENT_ID) A,
+       (SELECT STUDENT_ID, SUM(NUMBER_OF_WEEKS) NUMBER_OF_WEEKS_CUMUL, SUM(TOTAL_DAYS_OFF) TOTAL_DAYS_OFF_CUMUL, SUM(CANCELLED_SESSION) CANCELLED_SESSION_CUMUL, SUM(ATTENDED) ATTENDED_CUMUL
+        FROM (SELECT STUDENT_ID, NUMBER_OF_WEEKS, TOTAL_DAYS_OFF, COUNT(*) ATTENDED, BLOCK_ID ,SECTION_ID, CANCELLED_SESSION  FROM REPORTING WHERE ATTENDANCE_TYPE = 'IN_BLOCK'
+              GROUP BY BLOCK_ID, STUDENT_ID, SECTION_ID ORDER BY STUDENT_ID) C GROUP BY STUDENT_ID) B
     WHERE A.STUDENT_ID = B.STUDENT_ID);
 
 CREATE VIEW STUDENT_FACULTY AS(
-    SELECT NUMBER_OF_SESSION POSSIBLE, CANCELLED_SESSION, COUNT(*) ATTENDED, STUDENT_ID, STUDENT_NAME, SECTION_ID, COURSE_NAME , COURSE_ID , SECTION_START_DATE, FACULTY_ID, FACULTY_NAME
-    FROM REPORTING GROUP BY SECTION_ID , STUDENT_ID ORDER BY STUDENT_ID DESC
+    SELECT NUMBER_OF_WEEKS, TOTAL_DAYS_OFF, CANCELLED_SESSION, COUNT(*) ATTENDED, STUDENT_ID, SUM(EXTRA_POINT) EXTRA_POINT, STUDENT_NAME, SECTION_ID, COURSE_NAME , COURSE_ID , SECTION_START_DATE, FACULTY_ID, FACULTY_NAME
+    FROM REPORTING WHERE ATTENDANCE_TYPE = 'IN_BLOCK' GROUP BY SECTION_ID , STUDENT_ID ORDER BY STUDENT_ID DESC
 );

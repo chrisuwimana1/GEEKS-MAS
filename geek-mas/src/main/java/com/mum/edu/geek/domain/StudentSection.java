@@ -9,7 +9,8 @@ public class StudentSection implements Serializable {
     @Id
     private Integer studentId;
     private String studentName;
-    private Integer possible;
+    private Integer numberOfWeeks;
+    private Integer totalDaysOff;
     private Integer attended;
     private Integer cancelledSession;
     private Integer blockId;
@@ -17,7 +18,8 @@ public class StudentSection implements Serializable {
     private Integer sectionId;
     private String courseId;
     private String courseName;
-    private Integer possibleCumul;
+    private Integer numberOfWeeksCumul;
+    private Integer totalDaysOffCumul;
     private Integer attendedCumul;
     private Integer cancelledSessionCumul;
 
@@ -35,14 +37,6 @@ public class StudentSection implements Serializable {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
-    }
-
-    public Integer getPossible() {
-        return possible;
-    }
-
-    public void setPossible(Integer possible) {
-        this.possible = possible;
     }
 
     public Integer getAttended() {
@@ -85,14 +79,6 @@ public class StudentSection implements Serializable {
         this.courseName = courseName;
     }
 
-    public Integer getPossibleCumul() {
-        return possibleCumul;
-    }
-
-    public void setPossibleCumul(Integer possibleCumul) {
-        this.possibleCumul = possibleCumul;
-    }
-
     public Integer getAttendedCumul() {
         return attendedCumul;
     }
@@ -125,6 +111,38 @@ public class StudentSection implements Serializable {
         this.blockName = blockName;
     }
 
+    public Integer getNumberOfWeeks() {
+        return numberOfWeeks;
+    }
+
+    public void setNumberOfWeeks(Integer numberOfWeeks) {
+        this.numberOfWeeks = numberOfWeeks;
+    }
+
+    public Integer getTotalDaysOff() {
+        return totalDaysOff;
+    }
+
+    public void setTotalDaysOff(Integer totalDaysOff) {
+        this.totalDaysOff = totalDaysOff;
+    }
+
+    public Integer getNumberOfWeeksCumul() {
+        return numberOfWeeksCumul;
+    }
+
+    public void setNumberOfWeeksCumul(Integer numberOfWeeksCumul) {
+        this.numberOfWeeksCumul = numberOfWeeksCumul;
+    }
+
+    public Integer getTotalDaysOffCumul() {
+        return totalDaysOffCumul;
+    }
+
+    public void setTotalDaysOffCumul(Integer totalDaysOffCumul) {
+        this.totalDaysOffCumul = totalDaysOffCumul;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -139,19 +157,5 @@ public class StudentSection implements Serializable {
         return Objects.hash(getStudentId(), getSectionId());
     }
 
-    @Override
-    public String toString() {
-        return "StudentSectionRepository{" +
-                "studentId=" + studentId +
-                ", studentName='" + studentName + '\'' +
-                ", possible=" + possible +
-                ", attended=" + attended +
-                ", blockId=" + blockId +
-                ", sectionId=" + sectionId +
-                ", courseId='" + courseId + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", possibleCumul=" + possibleCumul +
-                ", attendedCumul=" + attendedCumul +
-                '}';
-    }
+
 }
