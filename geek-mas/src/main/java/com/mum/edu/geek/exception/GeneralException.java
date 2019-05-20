@@ -6,16 +6,10 @@ public class GeneralException extends RuntimeException{
 
     private  String customMessage;
 
-    public GeneralException(String erroMessage,String customMessage){
-        super(erroMessage);
+    public GeneralException(String message,String customMessage){
+        super(message);
         this.customMessage = customMessage;
     }
-
-    public GeneralException(String customMessage){
-        super(customMessage);
-        this.customMessage = customMessage;
-    }
-
 
     public String getCustomMessage() {
         return customMessage;

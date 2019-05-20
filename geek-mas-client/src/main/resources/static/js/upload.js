@@ -1,10 +1,4 @@
 function upload(url){
-
-    waitingDialog.show('Upload in progress...', {
-        dialogSize: 'sm',
-        progressType: 'info'
-    });
-
     var fileContent = new FormData();
     fileContent.append("file",$('input[type=file]')[0].files[0]);
     $.ajax({
@@ -21,12 +15,10 @@ function upload(url){
 
             $("#sucess").text("Success");
             $("#error").text("");
-            waitingDialog.hide();
         },
         error: function(request, status, error){
             $("#sucess").text("");
             $("#error").text(request.responseJSON.userMessage);
-            waitingDialog.hide();
         }
     });
 

@@ -5,9 +5,6 @@ $(document).ready(function () {
         "processing": true,
         "ajax": {
             "url": "http://localhost:8888/tmsession",
-            headers: {
-                "token":localStorage.getItem("token")
-            },
             dataSrc: ''
         },
         "columns": [
@@ -22,14 +19,18 @@ $(document).ready(function () {
 
     $('#dtBasicExample').on( 'click', 'tbody tr', function () {
         console.log(table.row(this).data());
-        if (decoded.role == "ADMIN"){
-            tmSessionId = table.row(this).data().id;
-            $('#studentID').val(table.row(this).data().student.id)
-            $('#studentName').val(table.row(this).data().student.name)
-            $('#sessionDate').val(table.row(this).data().sessionDate)
-            $("#tmSessionType").val(table.row(this).data().sessionType);
-            $('#myModal').modal('show');
-        }
+
+         tmSessionId = table.row(this).data().id;
+        $('#studentID').val(table.row(this).data().student.id)
+        $('#studentName').val(table.row(this).data().student.name)
+        //$('#tmSessionType').val(table.row(this).data().sessionType)
+        $('#sessionDate').val(table.row(this).data().sessionDate)
+
+        // $('#tmSessionType').text(dtRow[0].cells[2].innerHTML);
+        //
+
+
+        $('#myModal').modal('show');
 
     } );
 
@@ -47,24 +48,24 @@ $(document).ready(function () {
         var student = {id: studentIdInput}
         var objectToSend = {sessionDate: sessionDateInput, sessionType: sessionTypeInput, student: student}
 
+
         var tmSession = JSON.stringify(objectToSend);
 
         console.log(tmSession)
 
+
         $.ajax({
+            //url: contextRoot + '/employee/add',
             url: "http://localhost:8888/tmsession/update/" + tmSessionId,
             type: 'PUT',
-            headers: {
-                "token":localStorage.getItem("token")
-            },
             data: tmSession,
             contentType: 'application/json',   // Sends
             success: function (session) {
                 alert("success");
                 $('#myModal').modal('hide');
             },
-            error: function (data) {
-                alert(data.responseJSON.userMessage);
+            error: function (e) {
+                alert(e);
             }
         })
 
@@ -74,18 +75,19 @@ $(document).ready(function () {
     //Delete
     $('#deleteSession').on('click', function () {
 
+
         $.ajax({
+            //url: contextRoot + '/employee/add',
             url: "http://localhost:8888/tmsession/delete/" + tmSessionId,
             type: 'DELETE',
-            headers: {
-                "token":localStorage.getItem("token")
-            },
+
+           // contentType: 'application/json',   // Sends
             success: function () {
                 alert("success");
                 $('#myModal').modal('hide');
             },
-            error: function (data) {
-                alert(data.responseJSON.userMessage);
+            error: function (e) {
+                alert(e);
             }
         })
 

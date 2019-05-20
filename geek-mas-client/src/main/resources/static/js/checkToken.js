@@ -11,12 +11,10 @@ $(document).ready(function () {
             $("#menuReportByEntry").css("display","none");
             $("#menuUpload").css("display","none");
             $("#menuReportByFaculty").css("display","none");
-            $("#menuAddTmSession").css("display","none");
             break;
         case "FACULTY":
             $("#menuUpload").css("display","none");
             break;
-
     }
 
 });
