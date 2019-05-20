@@ -3,6 +3,8 @@ package com.mum.edu.geek.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 @Entity
 public class StudentEntry implements Serializable {
@@ -14,6 +16,7 @@ public class StudentEntry implements Serializable {
     private Integer attended;
     private Integer entryId;
     private Integer cancelledSession;
+    private BigDecimal tmPercent;
 
     public String getStudentName() {
         return studentName;
@@ -69,5 +72,13 @@ public class StudentEntry implements Serializable {
 
     public void setTotalDaysOff(Integer totalDaysOff) {
         this.totalDaysOff = totalDaysOff;
+    }
+
+    public BigDecimal getTmPercent() {
+        return tmPercent.round(new MathContext(3));
+    }
+
+    public void setTmPercent(BigDecimal tmPercent) {
+        this.tmPercent = tmPercent;
     }
 }

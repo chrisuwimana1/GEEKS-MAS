@@ -30,7 +30,7 @@ public class ParamSettingsController {
         return settingsService.findAllBlocks();
     }
 
-    @GetMapping(value = "/blocks", produces = "application/json")
+    @GetMapping(value = "/entries", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<Entry> allEntries(
             @RequestHeader("token") String token) {
