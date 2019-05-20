@@ -59,6 +59,20 @@ public class ReportController {
         return reportService.findByStudentIdReport(studentId);
     }
 
+    @GetMapping(value = "/attendances/sections/students/{studentId}/cumul", produces = "application/json")
+    @ResponseStatus(code = HttpStatus.OK)
+    public StudentSection getStudentCumul(
+            @PathVariable Integer studentId,
+            @RequestHeader("token") String token) {
+        if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
+            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+        List<StudentSection> list = reportService.findByStudentIdReport(studentId);
+
+        if (list.isEmpty()) return new StudentSection();
+
+        return list.get(0);
+    }
+
     @GetMapping(value = "/attendances/blocks/{blockId}/students", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentSection> getStudentBlock(
@@ -95,7 +109,6 @@ public class ReportController {
     public List<StudentFaculty> findByFacultyIdStudentsReport(
             @PathVariable Integer facultyId,
             @RequestHeader("token") String token) {
-        System.out.println("******"+token+"*********");
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByFacultyIdStudentsReport(facultyId);
