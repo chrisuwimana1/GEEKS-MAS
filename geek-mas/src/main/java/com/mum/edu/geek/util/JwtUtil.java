@@ -51,10 +51,11 @@ public class JwtUtil {
         return true;
     }
 
-    public String generateToken(String subject,String role){
+    public String generateToken(User user,String role){
         return Jwts.builder()
-                .setSubject(subject)
+                .setSubject(user.getUsername())
                 .claim("role",role)
+                .claim("id",user.getIdOwner())
                 .signWith(this.getKey())
                 .compact();
     }
