@@ -22,9 +22,9 @@ public class StudentFaculty implements Serializable {
     private String courseName;
     private LocalDate sectionStartDate;
     private Integer facultyId;
-    private String FacultyName;
+    private String facultyName;
     private Integer cancelledSession;
-    private Integer extraPoint;
+    private BigDecimal extraPoint;
     private Integer extraPointDays;
     private BigDecimal tmPercent;
 
@@ -92,11 +92,11 @@ public class StudentFaculty implements Serializable {
     }
 
     public String getFacultyName() {
-        return FacultyName;
+        return facultyName;
     }
 
     public void setFacultyName(String facultyName) {
-        FacultyName = facultyName;
+        this.facultyName = facultyName;
     }
 
     public Integer getCancelledSession() {
@@ -123,12 +123,12 @@ public class StudentFaculty implements Serializable {
         this.totalDaysOff = totalDaysOff;
     }
 
-    public Integer getExtraPoint() {
-        return extraPoint;
+    public BigDecimal getExtraPoint() {
+        return extraPoint.round(new MathContext(3));
     }
 
-    public void setExtraPoint(Integer extratPoint) {
-        this.extraPoint = extratPoint;
+    public void setExtraPoint(BigDecimal extraPoint) {
+        this.extraPoint = extraPoint;
     }
 
     public Integer getExtraPointDays() {

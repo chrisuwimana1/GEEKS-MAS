@@ -28,8 +28,6 @@ public class StudentSection implements Serializable {
     private Integer attendedCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
-
-
     public Integer getStudentId() {
         return studentId;
     }
