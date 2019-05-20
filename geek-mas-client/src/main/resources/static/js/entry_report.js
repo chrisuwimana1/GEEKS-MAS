@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var table = $('#entry-report').DataTable({
-        dom: 'Bfrtip',
+        dom: 'lBfrtip',
         buttons: [
             'csv', 'excel', 'pdf', 'print'
         ],
@@ -14,6 +14,7 @@ $(document).ready(function () {
             }
         },
         "columns": [
+            {"data": "entryName"},
             {"data": "studentId"},
             {"data": "studentName"},
             {"data": "totalPossibleDays"},

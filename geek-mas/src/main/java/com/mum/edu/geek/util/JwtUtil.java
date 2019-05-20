@@ -38,8 +38,8 @@ public class JwtUtil {
                     .map(value -> value.getValue()).collect(Collectors.toList());
              list.stream().forEach(System.out::println);
 
-             boolean roleFound = roles.stream().map( value -> value.toString().equals(list.get(0)))
-                     .findFirst().get();
+             boolean roleFound = roles.stream().filter( value -> value.toString().equals(list.get(0)) )
+                     .findFirst().isPresent();
 
             if(!roleFound){
                 return false;
@@ -51,10 +51,11 @@ public class JwtUtil {
         return true;
     }
 
-    public String generateToken(String subject,String role){
+    public String generateToken(User user,String role){
         return Jwts.builder()
-                .setSubject(subject)
+                .setSubject(user.getUsername())
                 .claim("role",role)
+                .claim("id",user.getIdOwner())
                 .signWith(this.getKey())
                 .compact();
     }
