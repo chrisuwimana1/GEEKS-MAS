@@ -38,8 +38,8 @@ public class JwtUtil {
                     .map(value -> value.getValue()).collect(Collectors.toList());
              list.stream().forEach(System.out::println);
 
-             boolean roleFound = roles.stream().map( value -> value.toString().equals(list.get(0)))
-                     .findFirst().get();
+             boolean roleFound = roles.stream().filter( value -> value.toString().equals(list.get(0)) )
+                     .findFirst().isPresent();
 
             if(!roleFound){
                 return false;

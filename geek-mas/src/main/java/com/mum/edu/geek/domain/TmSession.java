@@ -1,6 +1,10 @@
 package com.mum.edu.geek.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import net.bytebuddy.implementation.bind.annotation.Empty;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -11,11 +15,18 @@ public class TmSession implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(nullable = false)
+    @NotNull(message = "Session Date cant be null")
     private LocalDate sessionDate;
+
     @Column(nullable = false, length = 20)
+    @NotEmpty(message = "Session Type cant be empty")
+    @Size(min = 10,max = 20,message = "Wrong size of Session Type")
     private String sessionType;
+
     @ManyToOne
+    @NotNull(message = "Student cant be null")
     private Student student;
 //    @OneToOne(cascade = CascadeType.ALL)
 //    private Location location;

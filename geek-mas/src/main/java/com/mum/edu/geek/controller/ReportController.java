@@ -4,7 +4,7 @@ import com.mum.edu.geek.domain.Role;
 import com.mum.edu.geek.domain.StudentEntry;
 import com.mum.edu.geek.domain.StudentFaculty;
 import com.mum.edu.geek.domain.StudentSection;
-import com.mum.edu.geek.exception.BusinessException;
+import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.ReportService;
 import com.mum.edu.geek.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,8 @@ public class ReportController {
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> allEntries(
             @RequestHeader("token") String token) {
-        System.out.println("token = " + token);
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findAllEntryStudentsReport();
     }
 
@@ -40,7 +39,7 @@ public class ReportController {
             @PathVariable Integer entryId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findEntryStudentsReport(entryId);
     }
 
@@ -49,7 +48,7 @@ public class ReportController {
     public List<StudentSection> allSections(
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findAllSectionStudentsReport();
     }
 
@@ -59,7 +58,7 @@ public class ReportController {
             @PathVariable Integer studentId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByStudentIdReport(studentId);
     }
 
@@ -69,7 +68,7 @@ public class ReportController {
             @PathVariable Integer blockId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByBlockIdReport(blockId);
     }
 
@@ -80,7 +79,7 @@ public class ReportController {
             @PathVariable Integer blockId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByStudentIdAndBlockIdReport(studentId, blockId);
     }
 
@@ -89,7 +88,7 @@ public class ReportController {
     public List<StudentFaculty> findAllFacultyStudentsReport(
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findAllFacultyStudentsReport();
     }
 
@@ -99,7 +98,7 @@ public class ReportController {
             @PathVariable Integer facultyId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByFacultyIdStudentsReport(facultyId);
     }
 
@@ -110,7 +109,7 @@ public class ReportController {
             @PathVariable Integer studentId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByFacultyIdAndStudentIdReport(facultyId, studentId);
     }
 }
