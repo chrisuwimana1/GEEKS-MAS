@@ -11,14 +11,16 @@
             <ul class="nav">
 
 
-                <li class="active"><a th:href="@{/add/session}">Add TM Session</a></li>
+                <li class="active" id="menuAddTmSession"><a th:href="@{/add/session}">Add TM Session</a></li>
+                <li id="menuViewTmSessions"><a th:href="@{/sessions}">View TM Sessions</a></li>
+
                 <li id="menuUpload"><a href="#upSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Upload</a>
                     <ul class="collapse list-unstyled" id="upSubmenu">
                         <li><a th:href="@{/attendance/uploadAuto}">Automatic File</a></li>
                         <li><a th:href="@{/attendance/uploadManual}">Manual File</a></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/sessions}">View TM Sessions</a></li>
+
                 <li><a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Reports</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
