@@ -20,7 +20,8 @@ public class StudentFaculty implements Serializable {
     private Integer facultyId;
     private String FacultyName;
     private Integer cancelledSession;
-    private Integer extratPoint;
+    private Integer extraPoint;
+    private Integer extraPointDays;
 
     public Integer getStudentId() {
         return studentId;
@@ -117,12 +118,20 @@ public class StudentFaculty implements Serializable {
         this.totalDaysOff = totalDaysOff;
     }
 
-    public Integer getExtratPoint() {
-        return extratPoint;
+    public Integer getExtraPoint() {
+        return extraPoint;
     }
 
-    public void setExtratPoint(Integer extratPoint) {
-        this.extratPoint = extratPoint;
+    public void setExtraPoint(Integer extratPoint) {
+        this.extraPoint = extratPoint;
+    }
+
+    public Integer getExtraPointDays() {
+        return extraPointDays;
+    }
+
+    public void setExtraPointDays(Integer extraPointDays) {
+        this.extraPointDays = extraPointDays;
     }
 
     @Override
