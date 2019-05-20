@@ -81,4 +81,8 @@ public class StudentEntry implements Serializable {
     public void setTmPercent(BigDecimal tmPercent) {
         this.tmPercent = tmPercent;
     }
+
+    public Integer getTotalPossibleDays() {
+        return getNumberOfWeeks() * 6 - getCancelledSession();
+    }
 }
