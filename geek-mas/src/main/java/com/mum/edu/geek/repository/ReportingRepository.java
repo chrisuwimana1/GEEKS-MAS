@@ -9,6 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ReportingRepository extends JpaRepository<Reporting, Integer> {
-    @Query(value = "select r from Reporting r where r.studentId = :studentId and r.attendanceType = 'IN_BLOCK'")
+    @Query(value = "select r from Reporting r where r.reportingId.studentId = :studentId and r.attendanceType = 'IN_BLOCK'")
     List<Reporting> findReportingByStudentId(Integer studentId);
+    @Query(value = "select r from Reporting r where r.reportingId.studentId = :studentId and r.attendanceType = 'IN_BLOCK' and r.blockId = :blockId order by r.reportingId.attendanceDate")
+    List<Reporting> findReportingByBlockAndStudentId(Integer studentId, Integer blockId);
 }

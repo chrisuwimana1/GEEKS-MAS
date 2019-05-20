@@ -3,7 +3,7 @@ package com.mum.edu.geek.controller;
 import com.mum.edu.geek.domain.Block;
 import com.mum.edu.geek.domain.Entry;
 import com.mum.edu.geek.domain.Role;
-import com.mum.edu.geek.exception.BusinessException;
+import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.ParamSettingsService;
 import com.mum.edu.geek.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class ParamSettingsController {
     public List<Block> allBlocks(
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return settingsService.findAllBlocks();
     }
 
@@ -35,7 +35,7 @@ public class ParamSettingsController {
     public List<Entry> allEntries(
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return settingsService.findAllEntries();
     }
 }
