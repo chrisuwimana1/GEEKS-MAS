@@ -12,6 +12,7 @@ function upload(url){
         processData: false,
         contentType: false,
         success: function(data, status, xhr) {
+
             $("#sucess").text("Success");
             $("#error").text("");
         },

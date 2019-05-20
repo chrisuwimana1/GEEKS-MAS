@@ -168,4 +168,27 @@ public class StudentFaculty implements Serializable {
     public int hashCode() {
         return Objects.hash(getStudentId(), getSectionId());
     }
+
+    @Override
+    public String toString() {
+        return "StudentFaculty{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", numberOfWeeks=" + numberOfWeeks +
+                ", totalDaysOff=" + totalDaysOff +
+                ", attended=" + attended +
+                ", sectionId=" + sectionId +
+                ", blockId=" + blockId +
+                ", blockName='" + blockName + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", sectionStartDate=" + sectionStartDate +
+                ", facultyId=" + facultyId +
+                ", FacultyName='" + FacultyName + '\'' +
+                ", cancelledSession=" + cancelledSession +
+                ", extraPoint=" + extraPoint +
+                ", extraPointDays=" + extraPointDays +
+                ", tmPercent=" + tmPercent +
+                '}';
+    }
 }

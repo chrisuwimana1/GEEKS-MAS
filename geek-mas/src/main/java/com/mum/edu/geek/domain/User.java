@@ -16,6 +16,12 @@ public class User implements Serializable {
     @Column
     private Role role;
 
+    @OneToOne(mappedBy = "user")
+    private Faculty faculty;
+
+    @OneToOne(mappedBy = "user")
+    private Student student;
+
     public String getUsername() {
         return username;
     }
@@ -50,6 +56,15 @@ public class User implements Serializable {
 
     public boolean isFaculty(){
         return role.equals(Role.FACULTY);
+    }
+
+    public Integer getIdOwner(){
+        if(faculty != null){
+            return faculty.getId();
+        }else if (student != null){
+            return student.getId();
+        }
+        return 0;
     }
 
     @Override

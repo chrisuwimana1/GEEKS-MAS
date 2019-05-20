@@ -34,7 +34,7 @@ public class LoginController {
         Optional<User> userOpt = userService.sign(user.getUsername(),user.getPassword());
 
         if(userOpt.isPresent()){
-            return jwtUtil.generateToken(userOpt.get().getUsername(),userOpt.get().getRole().toString());
+            return jwtUtil.generateToken(userOpt.get(),userOpt.get().getRole().toString());
 
         }else{
             throw new BusinessException("No user found");

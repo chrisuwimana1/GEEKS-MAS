@@ -3,49 +3,40 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Entry report</title>
+    <script th:src="@{/resource/js/entry_report.js}" type="text/javascript"></script>
 </head>
 
 <body>
 
 <div class="col-xs-12 col-sm-9" id="attendance-page" layout:fragment="main-content">
-    <form th:action="@{/entry/report}">
-        <div class="form-group">
-            <label>Entry: </label>
-            <select>
-                <option selected value="">Select Entry</option>
-                <option value="TMS">May 2019</option>
-                <option value="DC">Feb 2019</option>
-            </select>
-        </div>
-    </form>
+<!--    <form th:action="@{/entry/report}">-->
+<!--        <div class="form-group">-->
+<!--            <label for="entryList">Entry: </label>-->
+<!--            <select id="entryList">-->
+<!--                <option selected value="">Select Entry</option>-->
+<!--                <option value="M2019">May 2019</option>-->
+<!--                <option value="F2019">Feb 2019</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--    </form>-->
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Student ID</th>
-            <th scope="col">Student Name</th>
-            <th scope="col">Attended</th>
-            <th scope="col">Possible Meetings</th>
-            <th scope="col">TM Percentage</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+<!--    <div style="height:500px;overflow:auto;">-->
+        <table class="table" id="entry-report">
+            <thead>
+            <tr>
+                <th scope="col">Entry</th>
+                <th scope="col">Student ID</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Attended</th>
+                <th scope="col">Possible Meetings</th>
+                <th scope="col">TM Percentage</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+<!--    </div>-->
 </div>
 
 </body>
