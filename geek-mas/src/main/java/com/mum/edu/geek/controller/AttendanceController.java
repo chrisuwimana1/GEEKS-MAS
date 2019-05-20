@@ -1,7 +1,6 @@
 package com.mum.edu.geek.controller;
 
 import com.mum.edu.geek.domain.Role;
-import com.mum.edu.geek.exception.BusinessException;
 import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.AttendanceService;
 import com.mum.edu.geek.util.FileUtil;
@@ -28,7 +27,7 @@ public class AttendanceController {
     public void uploadAutoFile(@RequestParam("file")MultipartFile file,
                                @RequestHeader("token")String token) throws  Exception{
         if( !jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)) )
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
 
         try{
             service.saveAutoFile(FileUtil.readFileFaster(file));
@@ -43,7 +42,7 @@ public class AttendanceController {
     public void uploadManualFile(@RequestParam("file")MultipartFile file,
                                  @RequestHeader("token")String token) throws  Exception{
         if( !jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)) )
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
 
         try{
             service.saveManualFile(FileUtil.readFileFaster(file));

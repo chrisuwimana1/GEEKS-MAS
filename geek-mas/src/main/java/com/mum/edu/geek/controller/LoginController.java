@@ -4,6 +4,7 @@ import com.mum.edu.geek.domain.Role;
 import com.mum.edu.geek.domain.User;
 import com.mum.edu.geek.dto.ErrorDTO;
 import com.mum.edu.geek.exception.BusinessException;
+import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.UserService;
 import com.mum.edu.geek.util.JwtUtil;
 import io.jsonwebtoken.JwtException;
@@ -37,7 +38,7 @@ public class LoginController {
             return jwtUtil.generateToken(userOpt.get(),userOpt.get().getRole().toString());
 
         }else{
-            throw new BusinessException("No user found");
+            throw new GeneralException("No user found");
         }
     }
 

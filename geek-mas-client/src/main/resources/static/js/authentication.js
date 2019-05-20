@@ -16,7 +16,7 @@ $(document).ready(function () {
             localStorage.setItem("token",data);
             window.location = "http://localhost:8080/home";
         }).fail(function (data) {
-            alert(data.responseJSON.message);
+            alert(data.responseJSON.userMessage);
         });
 
     });
