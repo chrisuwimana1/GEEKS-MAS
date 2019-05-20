@@ -106,6 +106,10 @@ public class StudentSection implements Serializable {
         this.numberOfWeeks = numberOfWeeks;
     }
 
+    public Integer getTotalDays() {
+        return getNumberOfWeeks() * 6 - getCancelledSession();
+    }
+
     public Integer getTotalDaysOff() {
         return totalDaysOff;
     }
@@ -141,4 +145,9 @@ public class StudentSection implements Serializable {
     public StudentSectionId getStudentSectionId() {
         return studentSectionId;
     }
+
+    public Integer getTotalDaysCumul() {
+        return getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
+    }
+
 }
