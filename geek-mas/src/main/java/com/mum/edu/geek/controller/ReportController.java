@@ -1,9 +1,6 @@
 package com.mum.edu.geek.controller;
 
-import com.mum.edu.geek.domain.Role;
-import com.mum.edu.geek.domain.StudentEntry;
-import com.mum.edu.geek.domain.StudentFaculty;
-import com.mum.edu.geek.domain.StudentSection;
+import com.mum.edu.geek.domain.*;
 import com.mum.edu.geek.exception.BusinessException;
 import com.mum.edu.geek.service.ReportService;
 import com.mum.edu.geek.util.JwtUtil;
@@ -28,7 +25,6 @@ public class ReportController {
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> allEntries(
             @RequestHeader("token") String token) {
-        System.out.println("token = " + token);
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findAllEntryStudentsReport();
@@ -91,14 +87,6 @@ public class ReportController {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
 
-
-        List<StudentFaculty> list = reportService.findAllFacultyStudentsReport();
-
-        for (StudentFaculty item : list){
-            System.out.println(item);
-        }
-
-
         return reportService.findAllFacultyStudentsReport();
     }
 
@@ -122,5 +110,15 @@ public class ReportController {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByFacultyIdAndStudentIdReport(facultyId, studentId);
+    }
+
+    @GetMapping(value = "/attendances/details/{studentId}", produces = "application/json")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<AttendanceItem> findByStudentIdDetailsReport(
+            @PathVariable Integer studentId,
+            @RequestHeader("token") String token) {
+        if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
+            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+        return reportService.findByStudentIdDetailsReport(studentId);
     }
 }

@@ -1,40 +1,34 @@
 package com.mum.edu.geek.domain;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.time.LocalDate;
-import java.util.Objects;
+
 @Entity
 public class StudentFaculty implements Serializable {
-    @Id
-    private Integer studentId;
+
+    @EmbeddedId
+    private StudentSectionId studentSectionId;
+    //private Integer studentId;
     private String studentName;
     private Integer numberOfWeeks;
     private Integer totalDaysOff;
     private Integer attended;
-    private Integer sectionId;
+    //private Integer sectionId;
     private Integer blockId;
     private String blockName;
     private String courseId;
     private String courseName;
     private LocalDate sectionStartDate;
     private Integer facultyId;
-    private String FacultyName;
+    private String facultyName;
     private Integer cancelledSession;
-    private Integer extraPoint;
+    private BigDecimal extraPoint;
     private Integer extraPointDays;
     private BigDecimal tmPercent;
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
 
     public String getStudentName() {
         return studentName;
@@ -43,6 +37,7 @@ public class StudentFaculty implements Serializable {
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
+
     public Integer getAttended() {
         return attended;
     }
@@ -51,12 +46,12 @@ public class StudentFaculty implements Serializable {
         this.attended = attended;
     }
 
-    public Integer getSectionId() {
-        return sectionId;
+    public StudentSectionId getStudentSectionId() {
+        return studentSectionId;
     }
 
-    public void setSectionId(Integer sectionId) {
-        this.sectionId = sectionId;
+    public Integer getBlockId() {
+        return blockId;
     }
 
     public String getCourseId() {
@@ -92,11 +87,11 @@ public class StudentFaculty implements Serializable {
     }
 
     public String getFacultyName() {
-        return FacultyName;
+        return facultyName;
     }
 
     public void setFacultyName(String facultyName) {
-        FacultyName = facultyName;
+        this.facultyName = facultyName;
     }
 
     public Integer getCancelledSession() {
@@ -123,12 +118,12 @@ public class StudentFaculty implements Serializable {
         this.totalDaysOff = totalDaysOff;
     }
 
-    public Integer getExtraPoint() {
-        return extraPoint;
+    public BigDecimal getExtraPoint() {
+        return extraPoint.round(new MathContext(3));
     }
 
-    public void setExtraPoint(Integer extratPoint) {
-        this.extraPoint = extratPoint;
+    public void setExtraPoint(BigDecimal extraPoint) {
+        this.extraPoint = extraPoint;
     }
 
     public Integer getExtraPointDays() {
@@ -139,15 +134,11 @@ public class StudentFaculty implements Serializable {
         this.extraPointDays = extraPointDays;
     }
 
-    public Integer getBlockId() {
-        return blockId;
-    }
-
     public String getBlockName() {
         return blockName;
     }
 
-    public Integer getTotalPossibleDays(){
+    public Integer getTotalPossibleDays() {
         return getNumberOfWeeks() * 6 - getCancelledSession();
     }
 
@@ -155,40 +146,5 @@ public class StudentFaculty implements Serializable {
         return tmPercent.round(new MathContext(3));
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof StudentFaculty)) return false;
-        StudentFaculty that = (StudentFaculty) o;
-        return Objects.equals(getStudentId(), that.getStudentId()) &&
-                Objects.equals(getSectionId(), that.getSectionId());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getStudentId(), getSectionId());
-    }
-
-    @Override
-    public String toString() {
-        return "StudentFaculty{" +
-                "studentId=" + studentId +
-                ", studentName='" + studentName + '\'' +
-                ", numberOfWeeks=" + numberOfWeeks +
-                ", totalDaysOff=" + totalDaysOff +
-                ", attended=" + attended +
-                ", sectionId=" + sectionId +
-                ", blockId=" + blockId +
-                ", blockName='" + blockName + '\'' +
-                ", courseId='" + courseId + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", sectionStartDate=" + sectionStartDate +
-                ", facultyId=" + facultyId +
-                ", FacultyName='" + FacultyName + '\'' +
-                ", cancelledSession=" + cancelledSession +
-                ", extraPoint=" + extraPoint +
-                ", extraPointDays=" + extraPointDays +
-                ", tmPercent=" + tmPercent +
-                '}';
-    }
 }

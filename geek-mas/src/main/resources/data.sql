@@ -935,11 +935,6 @@ values ('2019-01-01');
 drop table if exists STUDENT_ENTRY;
 drop table if exists STUDENT_SECTION;
 drop table if exists STUDENT_FACULTY;
-drop view if exists REPORTING;
-
-drop view if exists STUDENT_ENTRY;
-drop view if exists STUDENT_SECTION;
-drop view if exists STUDENT_FACULTY;
 drop table if exists REPORTING;
 
 CREATE VIEW REPORTING AS (
@@ -1042,8 +1037,8 @@ CREATE VIEW STUDENT_SECTION AS (
                  NUMBER_OF_WEEKS,
                  COUNT(*) * 100 / (NUMBER_OF_WEEKS * 6 - CANCELLED_SESSION) TM_PERCENT,
                  TOTAL_DAYS_OFF,
-                 COUNT(*)             ATTENDED,
-                 SUM(EXTRA_POINT_DAY) EXTRA_POINT_DAYS,
+                 COUNT(*)                                                   ATTENDED,
+                 SUM(EXTRA_POINT_DAY)                                       EXTRA_POINT_DAYS,
                  CASE
                      WHEN SUM(EXTRA_POINT_DAY) * 100 / (NUMBER_OF_WEEKS * 6 - TOTAL_DAYS_OFF - CANCELLED_SESSION) >= 90
                          THEN 1.5
@@ -1052,7 +1047,7 @@ CREATE VIEW STUDENT_SECTION AS (
                      WHEN SUM(EXTRA_POINT_DAY) * 100 / (NUMBER_OF_WEEKS * 6 - TOTAL_DAYS_OFF - CANCELLED_SESSION) >= 70
                          THEN 0.5
                      ELSE 0
-                     END AS           EXTRA_POINT,
+                     END AS                                                 EXTRA_POINT,
                  CANCELLED_SESSION,
                  BLOCK_ID,
                  BLOCK_NAME,
@@ -1101,9 +1096,9 @@ CREATE VIEW STUDENT_FACULTY AS (
     SELECT NUMBER_OF_WEEKS,
            TOTAL_DAYS_OFF,
            CANCELLED_SESSION,
-           COUNT(*)             ATTENDED,
+           COUNT(*)                                                   ATTENDED,
            STUDENT_ID,
-           SUM(EXTRA_POINT_DAY) EXTRA_POINT_DAYS,
+           SUM(EXTRA_POINT_DAY)                                       EXTRA_POINT_DAYS,
            CASE
                WHEN SUM(EXTRA_POINT_DAY) * 100 / (NUMBER_OF_WEEKS * 6 - TOTAL_DAYS_OFF - CANCELLED_SESSION) >= 90
                    THEN 1.5
@@ -1112,7 +1107,7 @@ CREATE VIEW STUDENT_FACULTY AS (
                WHEN SUM(EXTRA_POINT_DAY) * 100 / (NUMBER_OF_WEEKS * 6 - TOTAL_DAYS_OFF - CANCELLED_SESSION) >= 70
                    THEN 0.5
                ELSE 0
-               END AS           EXTRA_POINT,
+               END AS                                                 EXTRA_POINT,
            STUDENT_NAME,
            COUNT(*) * 100 / (NUMBER_OF_WEEKS * 6 - CANCELLED_SESSION) TM_PERCENT,
            SECTION_ID,
