@@ -35,31 +35,33 @@ $(document).ready(function () {
 
 
 
-    //
-    //
-    // var studentId = decoded.id;
-    // console.log(studentId);
-    //
-    // $.ajax({
-    //     url: "http://localhost:8888//attendances/sections/students/"+studentId+"/cumul",
-    //     contentType: "application/json",
-    //     dataType: 'json',
-    //     headers: {
-    //         "token": localStorage.getItem("token")
-    //     },
-    //     success: function(data){
-    //
-    //        // $("#totalSessionsPossible").text(data.);
-    //         $("#totalSessionsAttended").text(data);
-    //         $("#attendancePercentage").text(data);
-    //
-    //
-    //         $("#sessionsInBlock").text(data);
-    //         $("#totalSessions").text(data);
-    //         $("#percentage").text(data);
-    //         $("#extraCredit").text(data);
-    //     }
-    // })
+
+
+
+
+    var studentId = decoded.id;
+    console.log(studentId);
+
+    $.ajax({
+        url: "http://localhost:8888//attendances/sections/students/"+studentId+"/cumul",
+        contentType: "application/json",
+        dataType: 'json',
+        headers: {
+            "token": localStorage.getItem("token")
+        },
+        success: function(data){
+
+            $("#totalSessionsPossible").text(data.);
+            $("#totalSessionsAttended").text(data.attendedCumul);
+            $("#attendancePercentage").text(data.tmPercentCumul);
+
+
+            $("#sessionsInBlock").text(data);
+            $("#totalSessions").text(data);
+            $("#percentage").text(data);
+            $("#extraCredit").text(data);
+        }
+    })
     //
     // $( "#blocksList" ).change(function() {
     //
