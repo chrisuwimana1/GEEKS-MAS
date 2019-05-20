@@ -18,6 +18,7 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
+    @CrossOrigin(origins = "*")
     @GetMapping(value = "/attendances/entries", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> allEntries() {

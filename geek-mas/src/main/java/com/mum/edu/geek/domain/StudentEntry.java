@@ -1,10 +1,8 @@
 package com.mum.edu.geek.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 @Entity
 public class StudentEntry implements Serializable {
@@ -15,6 +13,8 @@ public class StudentEntry implements Serializable {
     private Integer attended;
     private Integer entryId;
     private Integer cancelledSession;
+
+
 
     public String getStudentName() {
         return studentName;
@@ -63,4 +63,5 @@ public class StudentEntry implements Serializable {
     public void setCancelledSession(Integer cancelledSession) {
         this.cancelledSession = cancelledSession;
     }
+
 }
