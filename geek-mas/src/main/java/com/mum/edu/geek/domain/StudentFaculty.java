@@ -3,6 +3,8 @@ package com.mum.edu.geek.domain;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDate;
 import java.util.Objects;
 @Entity
@@ -14,6 +16,8 @@ public class StudentFaculty implements Serializable {
     private Integer totalDaysOff;
     private Integer attended;
     private Integer sectionId;
+    private Integer blockId;
+    private String blockName;
     private String courseId;
     private String courseName;
     private LocalDate sectionStartDate;
@@ -22,6 +26,7 @@ public class StudentFaculty implements Serializable {
     private Integer cancelledSession;
     private Integer extraPoint;
     private Integer extraPointDays;
+    private BigDecimal tmPercent;
 
     public Integer getStudentId() {
         return studentId;
@@ -132,6 +137,22 @@ public class StudentFaculty implements Serializable {
 
     public void setExtraPointDays(Integer extraPointDays) {
         this.extraPointDays = extraPointDays;
+    }
+
+    public Integer getBlockId() {
+        return blockId;
+    }
+
+    public String getBlockName() {
+        return blockName;
+    }
+
+    public Integer getTotalPossibleDays(){
+        return getNumberOfWeeks() * 6 - getCancelledSession();
+    }
+
+    public BigDecimal getTmPercent() {
+        return tmPercent.round(new MathContext(3));
     }
 
     @Override
