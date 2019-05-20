@@ -2,16 +2,15 @@ package com.mum.edu.geek.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.io.Serializable;
-import java.util.Objects;
+
 @Entity
 public class StudentEntry implements Serializable {
     @Id
     private Integer studentId;
     private String studentName;
-    private Integer possible;
+    private Integer numberOfWeeks;
+    private Integer totalDaysOff;
     private Integer attended;
     private Integer entryId;
     private Integer cancelledSession;
@@ -24,12 +23,12 @@ public class StudentEntry implements Serializable {
         this.studentName = studentName;
     }
 
-    public Integer getPossible() {
-        return possible;
+    public Integer getNumberOfWeeks() {
+        return numberOfWeeks;
     }
 
-    public void setPossible(Integer possible) {
-        this.possible = possible;
+    public void setNumberOfWeeks(Integer possible) {
+        this.numberOfWeeks = possible;
     }
 
     public Integer getAttended() {
@@ -62,5 +61,13 @@ public class StudentEntry implements Serializable {
 
     public void setCancelledSession(Integer cancelledSession) {
         this.cancelledSession = cancelledSession;
+    }
+
+    public Integer getTotalDaysOff() {
+        return totalDaysOff;
+    }
+
+    public void setTotalDaysOff(Integer totalDaysOff) {
+        this.totalDaysOff = totalDaysOff;
     }
 }

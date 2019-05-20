@@ -17,9 +17,9 @@ public class Course implements Serializable {
     @NaturalId
     private String name;
     @Column(nullable = false)
-    private Integer numberOfWeek;
+    private Integer numberOfWeeks;
     @Column(nullable = false)
-    private Integer numberOfSession;
+    private Integer totalDaysOff;
 
     public String getId() {
         return id;
@@ -37,28 +37,28 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public int getNumberOfWeek() {
-        return numberOfWeek;
+    public int getNumberOfWeeks() {
+        return numberOfWeeks;
     }
 
-    public void setNumberOfWeek(int numberOfWeek) {
-        this.numberOfWeek = numberOfWeek;
+    public void setNumberOfWeeks(int numberOfWeek) {
+        this.numberOfWeeks = numberOfWeek;
     }
 
-    public int getNumberOfSession() {
-        return numberOfSession;
+    public int getTotalDaysOff() {
+        return totalDaysOff;
     }
 
-    public void setNumberOfSession(int numberOfSession) {
-        this.numberOfSession = numberOfSession;
+    public void setTotalDaysOff(int numberOfSession) {
+        this.totalDaysOff = numberOfSession;
     }
 
     public void setNumberOfWeek(Integer numberOfWeek) {
-        this.numberOfWeek = numberOfWeek;
+        this.numberOfWeeks = numberOfWeek;
     }
 
     public void setNumberOfSession(Integer numberOfSession) {
-        this.numberOfSession = numberOfSession;
+        this.totalDaysOff = numberOfSession;
     }
 
     @Override
@@ -79,8 +79,8 @@ public class Course implements Serializable {
         return "Course{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", numberOfWeek=" + numberOfWeek +
-                ", numberOfSession=" + numberOfSession +
+                ", numberOfWeeks=" + numberOfWeeks +
+                ", totalDaysOff=" + totalDaysOff +
                 '}';
     }
 }
