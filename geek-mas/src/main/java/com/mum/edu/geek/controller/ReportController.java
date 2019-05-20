@@ -141,7 +141,7 @@ public class ReportController {
             @PathVariable Integer blockId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
-            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+            throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByBlockAndStudentIdDetailsReport(studentId, blockId);
     }
 }
