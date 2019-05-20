@@ -1,20 +1,22 @@
 package com.mum.edu.geek.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Objects;
+import java.math.MathContext;
+
 @Entity
 public class StudentEntry implements Serializable {
     @Id
     private Integer studentId;
     private String studentName;
-    private Integer possible;
+    private Integer numberOfWeeks;
+    private Integer totalDaysOff;
     private Integer attended;
     private Integer entryId;
     private Integer cancelledSession;
-
-
+    private BigDecimal tmPercent;
 
     public String getStudentName() {
         return studentName;
@@ -24,12 +26,12 @@ public class StudentEntry implements Serializable {
         this.studentName = studentName;
     }
 
-    public Integer getPossible() {
-        return possible;
+    public Integer getNumberOfWeeks() {
+        return numberOfWeeks;
     }
 
-    public void setPossible(Integer possible) {
-        this.possible = possible;
+    public void setNumberOfWeeks(Integer possible) {
+        this.numberOfWeeks = possible;
     }
 
     public Integer getAttended() {
@@ -64,4 +66,19 @@ public class StudentEntry implements Serializable {
         this.cancelledSession = cancelledSession;
     }
 
+    public Integer getTotalDaysOff() {
+        return totalDaysOff;
+    }
+
+    public void setTotalDaysOff(Integer totalDaysOff) {
+        this.totalDaysOff = totalDaysOff;
+    }
+
+    public BigDecimal getTmPercent() {
+        return tmPercent.round(new MathContext(3));
+    }
+
+    public void setTmPercent(BigDecimal tmPercent) {
+        this.tmPercent = tmPercent;
+    }
 }

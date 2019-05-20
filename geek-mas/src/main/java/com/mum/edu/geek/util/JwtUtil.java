@@ -36,12 +36,16 @@ public class JwtUtil {
                     .parseClaimsJws(token).getBody().entrySet().stream()
                     .filter( entry -> entry.getKey().equals("role"))
                     .map(value -> value.getValue()).collect(Collectors.toList());
+             list.stream().forEach(System.out::println);
 
-            if(list.isEmpty()){
+             boolean roleFound = roles.stream().map( value -> value.toString().equals(list.get(0)))
+                     .findFirst().get();
+
+            if(!roleFound){
                 return false;
             }
 
-        } catch (JwtException e) {
+        } catch (Exception e) {
             return false;
         }
         return true;

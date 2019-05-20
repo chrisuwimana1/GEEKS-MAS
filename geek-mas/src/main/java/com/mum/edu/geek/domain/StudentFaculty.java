@@ -10,7 +10,8 @@ public class StudentFaculty implements Serializable {
     @Id
     private Integer studentId;
     private String studentName;
-    private Integer possible;
+    private Integer numberOfWeeks;
+    private Integer totalDaysOff;
     private Integer attended;
     private Integer sectionId;
     private String courseId;
@@ -19,6 +20,8 @@ public class StudentFaculty implements Serializable {
     private Integer facultyId;
     private String FacultyName;
     private Integer cancelledSession;
+    private Integer extraPoint;
+    private Integer extraPointDays;
 
     public Integer getStudentId() {
         return studentId;
@@ -35,15 +38,6 @@ public class StudentFaculty implements Serializable {
     public void setStudentName(String studentName) {
         this.studentName = studentName;
     }
-
-    public Integer getPossible() {
-        return possible;
-    }
-
-    public void setPossible(Integer possible) {
-        this.possible = possible;
-    }
-
     public Integer getAttended() {
         return attended;
     }
@@ -108,20 +102,36 @@ public class StudentFaculty implements Serializable {
         this.cancelledSession = cancelledSession;
     }
 
-    @Override
-    public String toString() {
-        return "StudentFaculty{" +
-                "studentId=" + studentId +
-                ", studentName='" + studentName + '\'' +
-                ", possible=" + possible +
-                ", attended=" + attended +
-                ", sectionId=" + sectionId +
-                ", courseId='" + courseId + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", sectionStartDate=" + sectionStartDate +
-                ", facultyId=" + facultyId +
-                ", FacultyName='" + FacultyName + '\'' +
-                '}';
+    public Integer getNumberOfWeeks() {
+        return numberOfWeeks;
+    }
+
+    public void setNumberOfWeeks(Integer numberOfWeeks) {
+        this.numberOfWeeks = numberOfWeeks;
+    }
+
+    public Integer getTotalDaysOff() {
+        return totalDaysOff;
+    }
+
+    public void setTotalDaysOff(Integer totalDaysOff) {
+        this.totalDaysOff = totalDaysOff;
+    }
+
+    public Integer getExtraPoint() {
+        return extraPoint;
+    }
+
+    public void setExtraPoint(Integer extratPoint) {
+        this.extraPoint = extratPoint;
+    }
+
+    public Integer getExtraPointDays() {
+        return extraPointDays;
+    }
+
+    public void setExtraPointDays(Integer extraPointDays) {
+        this.extraPointDays = extraPointDays;
     }
 
     @Override
