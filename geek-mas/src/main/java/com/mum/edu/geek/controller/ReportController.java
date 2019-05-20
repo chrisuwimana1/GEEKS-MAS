@@ -90,6 +90,15 @@ public class ReportController {
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+
+
+        List<StudentFaculty> list = reportService.findAllFacultyStudentsReport();
+
+        for (StudentFaculty item : list){
+            System.out.println(item);
+        }
+
+
         return reportService.findAllFacultyStudentsReport();
     }
 
@@ -98,6 +107,7 @@ public class ReportController {
     public List<StudentFaculty> findByFacultyIdStudentsReport(
             @PathVariable Integer facultyId,
             @RequestHeader("token") String token) {
+        System.out.println("******"+token+"*********");
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByFacultyIdStudentsReport(facultyId);
