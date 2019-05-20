@@ -63,21 +63,13 @@ public class ReportService {
         return sfr.findByFacultyIdAndStudentId(facultyId, studentId);
     }
 
-    public List<AttendanceItem> findByStudentIdDetailsReport(Integer studentId) {
+    public List<Reporting> findByStudentIdDetailsReport(Integer studentId) {
         List<Reporting> list = reportingRepository.findReportingByStudentId(studentId);
-        List<LocalDate> collect = list.stream().map(r -> r.getAttendanceDate()).collect(Collectors.toList());
-        List<AttendanceItem> attendanceList = new ArrayList<>();
-        if (list != null && !list.isEmpty()) {
-            Reporting reporting = list.get(0);
-            LocalDate sectionStartDate = reporting.getSectionStartDate();
-            Integer numberOfWeeks = reporting.getNumberOfWeeks();
-            LocalDate sectionEndDate = sectionStartDate.plusWeeks(numberOfWeeks).minusDays(reporting.getTotalDaysOff());
+        return list;
+    }
 
-            for (LocalDate date = sectionStartDate; date.isBefore(sectionEndDate); date.plusDays(1)) {
-                attendanceList.add(new AttendanceItem(date, !date.getDayOfWeek().equals(DayOfWeek.SUNDAY) && collect.contains(date)));
-            }
-        }
-
-        return attendanceList;
+    public List<Reporting> findByBlockAndStudentIdDetailsReport(Integer studentId, Integer blockId) {
+        List<Reporting> list = reportingRepository.findReportingByBlockAndStudentId(studentId, blockId);
+        return list;
     }
 }

@@ -127,11 +127,22 @@ public class ReportController {
 
     @GetMapping(value = "/attendances/details/{studentId}", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<AttendanceItem> findByStudentIdDetailsReport(
+    public List<Reporting> findByStudentIdDetailsReport(
             @PathVariable Integer studentId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
             throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findByStudentIdDetailsReport(studentId);
+    }
+
+    @GetMapping(value = "/attendances/details/{studentId}/blocks/{blockId}", produces = "application/json")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<Reporting> findByBlockAndStudentIdDetailsReport(
+            @PathVariable Integer studentId,
+            @PathVariable Integer blockId,
+            @RequestHeader("token") String token) {
+        if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
+            throw new BusinessException(jwtUtil.NOT_GRANTED_MESSAGE);
+        return reportService.findByBlockAndStudentIdDetailsReport(studentId, blockId);
     }
 }
