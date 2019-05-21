@@ -30,7 +30,7 @@ public class StudentFaculty implements Serializable {
     @Column(name = "extra_point")
     private BigDecimal bonusPoints;
     @Column(name = "extra_point_days")
-    private Integer requiredDays;
+    private Integer requiredAttended;
     private BigDecimal tmPercent;
 
     public String getStudentName() {
@@ -141,5 +141,27 @@ public class StudentFaculty implements Serializable {
         return tmPercent == null ? null : tmPercent.round(new MathContext(3));
     }
 
+    public void setStudentSectionId(StudentSectionId studentSectionId) {
+        this.studentSectionId = studentSectionId;
+    }
 
+    public void setBlockId(Integer blockId) {
+        this.blockId = blockId;
+    }
+
+    public void setBlockName(String blockName) {
+        this.blockName = blockName;
+    }
+
+    public Integer getRequiredAttended() {
+        return requiredAttended;
+    }
+
+    public void setRequiredAttended(Integer requiredAttended) {
+        this.requiredAttended = requiredAttended;
+    }
+
+    public void setTmPercent(BigDecimal tmPercent) {
+        this.tmPercent = tmPercent;
+    }
 }
