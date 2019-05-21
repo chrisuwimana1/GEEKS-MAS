@@ -15,6 +15,8 @@ public class CancelledSession implements Serializable {
     @Column(nullable = false)
     private LocalDate sessionDate;
 
+    private String reason;
+
     public Integer getId() {
         return id;
     }
@@ -31,6 +33,14 @@ public class CancelledSession implements Serializable {
         this.sessionDate = sessionDate;
     }
 
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,4 +53,5 @@ public class CancelledSession implements Serializable {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
 }

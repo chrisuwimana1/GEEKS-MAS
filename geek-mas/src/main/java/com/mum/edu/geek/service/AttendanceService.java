@@ -4,7 +4,9 @@ import com.mum.edu.geek.domain.Attendance;
 import com.mum.edu.geek.domain.Student;
 import com.mum.edu.geek.repository.AttendanceRepository;
 import com.mum.edu.geek.repository.StudentRepository;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,9 +37,9 @@ public class AttendanceService {
                 Attendance att = new Attendance(locationCol, student, dateCol, timeCol);
                 try {
                     this.attendanceRepository.save(att);
-                } catch (Exception ex){
+                } catch (DataIntegrityViolationException ex){
                     // TODO HANDLE CONTRAINT EXCEPTION (DUPLICATE INSERTIONS COMING FROM FILE)
-                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+                }catch (Exception ex){
                     ex.printStackTrace();
                 }
 
@@ -58,9 +60,9 @@ public class AttendanceService {
                 Attendance att = new Attendance("DB", student, dateCol);
                 try {
                     this.attendanceRepository.save(att);
-                } catch (Exception ex){
+                } catch (DataIntegrityViolationException ex){
                     // TODO HANDLE CONTRAINT EXCEPTION (DUPLICATE INSERTIONS COMING FROM FILE)
-                    System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
+                } catch (Exception ex){
                     ex.printStackTrace();
                 }
             }
