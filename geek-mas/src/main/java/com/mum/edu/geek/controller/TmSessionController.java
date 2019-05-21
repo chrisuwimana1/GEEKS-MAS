@@ -55,7 +55,7 @@ public class TmSessionController {
     @GetMapping("/tmsession/{studentId}")
     @ResponseStatus(HttpStatus.CREATED)
     public List<TmSession> findSessionsByStudent(@PathVariable Integer studentId,@RequestHeader("token") String token){
-        if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
+        if (!jwtUtil.isGranted(token, Arrays.asList(Role.STUDENT)))
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
 
         return tmSessionService.findByStudent(studentId);

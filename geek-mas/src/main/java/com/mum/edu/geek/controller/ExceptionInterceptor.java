@@ -20,7 +20,7 @@ public class ExceptionInterceptor {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorDTO anyExceptionHandle(Exception ex){
-        return new ErrorDTO(ex.getMessage(), ErrorType.INTERNAL);
+        return new ErrorDTO("Server Error",ex.getMessage(), ErrorType.INTERNAL);
     }
 
     @ExceptionHandler({GeneralException.class})
