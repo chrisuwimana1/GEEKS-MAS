@@ -58,9 +58,13 @@ $(document).ready(function () {
             },
             success: function (data) {
 
-                $("#totalSessionsPossible").text(data.totalDaysCumul);
+                var possibleDays = (data.numberOfWeeksCumul*6)-data.totalDaysOffCumul-data.cancelledSessionCumul;
+
+                var attendancePercentage = parseFloat(Math.round((data.attendedCumul/possibleDays)*100).toFixed(2));
+
+                $("#totalSessionsPossible").text(possibleDays);
                 $("#totalSessionsAttended").text(data.attendedCumul);
-                $("#attendancePercentage").text(data.tmPercentCumul);
+                $("#attendancePercentage").text(attendancePercentage);
 
             }
         })
@@ -84,8 +88,8 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
+                console.log(data.length)
                 for (var i = 0; i < data.length; i++) {
-                    console.log(data[i].reportingId.attendanceDate)
                     $('#student-report tbody').append("<tr><td>" + data[i].reportingId.attendanceDate + "</td></tr>")
                 }
             },
@@ -105,21 +109,23 @@ $(document).ready(function () {
             success: function (data) {
                 //console.log(data);
 
-                var t = data.totalDays - data.totalDaysOff;
+                var possibleSessions = data.numberOfWeeks * 6 - data.totalDaysOff - data.cancelledSession;
 
-                $("#sessionsInBlock").text(t);
+                var blockAttendancePercentage = parseFloat(Math.round((data.attended/possibleSessions)*100).toFixed(2));
+
+
+               // var t = data.totalDays - ;
+
+                $("#sessionsInBlock").text(possibleSessions);
                 $("#totalSessions").text(data.attended);
-                $("#percentage").text(data.tmPercent);
+                $("#percentage").text(blockAttendancePercentage);
                 $("#extraCredit").text(data.bonus);
 
             },
             error: function (e) {
                 alert(e)
             }
-
         })
-
-
     })
 
     $("#searchId").click(function () {
