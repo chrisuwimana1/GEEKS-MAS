@@ -24,8 +24,8 @@ public class StudentSection implements Serializable {
     private Integer numberOfWeeksCumul;
     private Integer totalDaysOffCumul;
     private Integer attendedCumul;
-    private Integer extraPoint;
-    private Integer extraPointCumul;
+    private BigDecimal extraPoint;
+    private BigDecimal extraPointCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
     @Transient
@@ -112,7 +112,7 @@ public class StudentSection implements Serializable {
     }
 
     public Integer getTotalDays() {
-        return getNumberOfWeeks() * 6 - getCancelledSession();
+        return getNumberOfWeeks() == null ? null : getNumberOfWeeks() * 6 - getCancelledSession();
     }
 
     public Integer getTotalDaysOff() {
@@ -140,11 +140,11 @@ public class StudentSection implements Serializable {
     }
 
     public BigDecimal getTmPercent() {
-        return tmPercent == null ? tmPercent : tmPercent.round(new MathContext(3));
+        return tmPercent == null ? null : tmPercent.round(new MathContext(3));
     }
 
     public BigDecimal getTmPercentCumul() {
-        return tmPercentCumul == null ? tmPercentCumul : tmPercentCumul.round(new MathContext(3));
+        return tmPercentCumul == null ? null : tmPercentCumul.round(new MathContext(3));
     }
 
     public StudentSectionId getStudentSectionId() {
@@ -152,14 +152,14 @@ public class StudentSection implements Serializable {
     }
 
     public Integer getTotalDaysCumul() {
-        return getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
+        return getNumberOfWeeksCumul() == null ? null : getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
     }
 
-    public Integer getExtraPoint() {
-        return extraPoint;
+    public BigDecimal geExtraPoint() {
+        return extraPoint == null ? null : extraPoint.round(new MathContext(3));
     }
 
-    public Integer getExtraPointCumul() {
-        return extraPointCumul;
+    public BigDecimal geExtraPointCumul() {
+        return extraPointCumul == null ? null : extraPointCumul.round(new MathContext(3));
     }
 }
