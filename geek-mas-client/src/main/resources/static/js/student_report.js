@@ -73,8 +73,8 @@ $(document).ready(function () {
                 var possibleDays = (data.numberOfWeeksCumul*6)-data.cancelledSessionCumul;
                 var totalRequiredSessions = possibleDays- data.totalDaysOffCumul;
 
-                var attendancePercentage = parseFloat(Math.round((data.attendedCumul/possibleDays)*100).toFixed(2));
-                var requiredAttendancePercentage = parseFloat(Math.round((data.requiredAttendedCumul/totalRequiredSessions)*100).toFixed(2));
+                var attendancePercentage = (((data.attendedCumul/possibleDays)*100).toFixed(2));
+                var requiredAttendancePercentage = ((data.requiredAttendedCumul/totalRequiredSessions)*100).toFixed(2);
 
                 $("#totalSessionsPossible").text(possibleDays);
                 $("#totalRequiredSessions").text(totalRequiredSessions);
@@ -135,8 +135,8 @@ $(document).ready(function () {
 
                 var possibleSessions = data.numberOfWeeks * 6  - data.cancelledSession;
 
-                var attendancePercentage = parseFloat(Math.round((data.attended/possibleSessions)*100).toFixed(2));
-                var requiredAttendancePercentage = parseFloat(Math.round((data.requiredAttended/(possibleSessions-data.totalDaysOff))*100).toFixed(2));
+                var attendancePercentage = ((data.attended/possibleSessions)*100).toFixed(2);
+                var requiredAttendancePercentage =((data.requiredAttended/(possibleSessions-data.totalDaysOff))*100).toFixed(2);
 
                 $("#sessionsInBlock").text(possibleSessions);
                 $("#requiredSessionsInBlock").text(possibleSessions - data.totalDaysOff);
