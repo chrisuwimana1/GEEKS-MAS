@@ -22,7 +22,7 @@ public class TmSession implements Serializable {
 
     @Column(nullable = false, length = 20)
     @NotEmpty(message = "Session Type cant be empty")
-    @Size(min = 10,max = 20,message = "Wrong size of Session Type")
+    @Size(min = 5,max = 20,message = "Wrong size of Session Type")
     private String sessionType;
 
     @ManyToOne
