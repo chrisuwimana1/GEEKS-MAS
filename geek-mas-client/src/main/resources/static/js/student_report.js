@@ -59,12 +59,24 @@ $(document).ready(function () {
             success: function (data) {
 
                 var possibleDays = (data.numberOfWeeksCumul*6)-data.cancelledSessionCumul;
+                var totalRequiredSessions = possibleDays- data.totalDaysOffCumul;
 
                 var attendancePercentage = parseFloat(Math.round((data.attendedCumul/possibleDays)*100).toFixed(2));
+                var requiredAttendancePercentage = parseFloat(Math.round((data.requiredAttendedCumul/totalRequiredSessions)*100).toFixed(2));
 
                 $("#totalSessionsPossible").text(possibleDays);
+                $("#totalRequiredSessions").text(totalRequiredSessions);
+
+              //  $("#totalRequiredSessions").text(totalRequiredSessions);
+
                 $("#totalSessionsAttended").text(data.attendedCumul);
+                $("#totalRequiredSessionsAttended").text(data.requiredAttendedCumul);
+
+
+                $("#cumulativeCancellesSessions").text(data.cancelledSessionCumul);
                 $("#attendancePercentage").text(attendancePercentage);
+
+                $("#requiredAttendancePercentage").text(requiredAttendancePercentage);
 
             }
         })
@@ -111,16 +123,19 @@ $(document).ready(function () {
 
                 var possibleSessions = data.numberOfWeeks * 6  - data.cancelledSession;
 
-                var blockAttendancePercentage = parseFloat(Math.round((data.attended/possibleSessions)*100).toFixed(2));
-
-
-               // var t = data.totalDays - ;
+                var attendancePercentage = parseFloat(Math.round((data.attended/possibleSessions)*100).toFixed(2));
+                var requiredAttendancePercentage = parseFloat(Math.round((data.requiredAttended/(possibleSessions-data.totalDaysOff))*100).toFixed(2));
 
                 $("#sessionsInBlock").text(possibleSessions);
-                $("#totalSessions").text(data.attended);
-                $("#percentage").text(blockAttendancePercentage);
+                $("#requiredSessionsInBlock").text(possibleSessions - data.totalDaysOff);
+                $("#sessionsAttended").text(data.attended);
+                $("#requiredSessionsAttended").text(data.requiredAttended);
+                $("#totalRequiredSessionsPerBlock").text(data.cancelledSession);
                 $("#outOfBlockSessions").text(data.totalDaysOff)
-                $("#extraCredit").text(data.bonus);
+                $("#requiredPercentage").text(requiredAttendancePercentage);
+                $("#percentage").text(attendancePercentage);
+                $("#cancelledSessions").text(data.cancelledSessionCumul);
+                $("#extraCredit").text(data.bonusPoints);
 
             },
             error: function (e) {
