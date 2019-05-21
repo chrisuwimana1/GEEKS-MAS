@@ -17,9 +17,13 @@ $(document).ready(function () {
             {"data": "entryName"},
             {"data": "studentId"},
             {"data": "studentName"},
-            {"data": "attended"},
-            {"data": "totalPossibleDays"},
-            {"data": "tmPercent"}
+            {"data": "requiredAttended"},
+            {"data": null, "render": function (data, type, row) {
+                    return (data["numberOfWeeks"]*6-data["totalDaysOff"]-data["cancelledSession"])
+                }},
+            {"data": null, "render": function (data, type, row) {
+                    return ((data["requiredAttended"])*100 /(data["numberOfWeeks"]*6-data["totalDaysOff"]-data["cancelledSession"])).toFixed(2)+'%'
+                }}
         ]
     });
 });

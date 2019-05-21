@@ -25,7 +25,7 @@ public class ReportController {
     @ResponseStatus(code = HttpStatus.OK)
     public List<StudentEntry> allEntries(
             @RequestHeader("token") String token) {
-        if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
+        if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY)))
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         return reportService.findAllEntryStudentsReport();
     }

@@ -37,6 +37,8 @@ $(document).ready(function () {
             success: function (session) {
                 $("#sucess").text("Success!");
                 $("#error").text("");
+                //window.location.href("http://localhost:8080/sessions")
+
             },
             error: function (data) {
                 $("#sucess").text("");
