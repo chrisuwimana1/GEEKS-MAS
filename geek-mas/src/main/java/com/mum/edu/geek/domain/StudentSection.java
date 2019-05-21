@@ -24,8 +24,8 @@ public class StudentSection implements Serializable {
     private Integer numberOfWeeksCumul;
     private Integer totalDaysOffCumul;
     private Integer attendedCumul;
-    private Integer extraPoint;
-    private Integer extraPointCumul;
+    private BigDecimal extraPoint;
+    private BigDecimal extraPointCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
     @Transient
@@ -155,11 +155,11 @@ public class StudentSection implements Serializable {
         return getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
     }
 
-    public Integer getExtraPoint() {
-        return extraPoint;
+    public BigDecimal geExtraPoint() {
+        return extraPoint == null ? extraPoint : extraPoint.round(new MathContext(3));
     }
 
-    public Integer getExtraPointCumul() {
-        return extraPointCumul;
+    public BigDecimal geExtraPointCumul() {
+        return extraPointCumul == null ? extraPointCumul : extraPointCumul.round(new MathContext(3));
     }
 }
