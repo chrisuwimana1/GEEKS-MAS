@@ -68,7 +68,7 @@ public class ReportController {
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         List<StudentSection> list = reportService.findByStudentIdReport(studentId);
 
-        if (list.isEmpty()) return new StudentSection();
+        if (list == null || list.isEmpty()) return new StudentSection();
 
         return list.get(0);
     }
@@ -85,13 +85,15 @@ public class ReportController {
 
     @GetMapping(value = "/attendances/blocks/{blockId}/students/{studentId}", produces = "application/json")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<StudentSection> getStudentBlock(
+    public StudentSection getStudentBlock(
             @PathVariable Integer studentId,
             @PathVariable Integer blockId,
             @RequestHeader("token") String token) {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
-        return reportService.findByStudentIdAndBlockIdReport(studentId, blockId);
+        List<StudentSection> list = reportService.findByStudentIdAndBlockIdReport(studentId, blockId);
+        if (list == null || list.isEmpty()) return new StudentSection();
+        return list.get(0);
     }
 
     @GetMapping(value = "/attendances/faculties", produces = "application/json")
