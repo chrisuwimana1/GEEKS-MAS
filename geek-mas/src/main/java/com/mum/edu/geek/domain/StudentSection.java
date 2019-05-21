@@ -15,6 +15,8 @@ public class StudentSection implements Serializable {
     private Integer numberOfWeeks;
     private Integer totalDaysOff;
     private Integer attended;
+    @Column(name = "EXTRA_POINT_DAYS")
+    private Integer requiredAttended;
     private BigDecimal tmPercent;
     private Integer cancelledSession;
     private Integer blockId;
@@ -24,12 +26,15 @@ public class StudentSection implements Serializable {
     private Integer numberOfWeeksCumul;
     private Integer totalDaysOffCumul;
     private Integer attendedCumul;
+    @Column(name = "EXTRA_POINT_DAY_CUMUL")
+    private Integer requiredAttendedCumul;
     @Column(name = "extra_point")
     private BigDecimal bonusPoints;
     @Column(name = "extra_point_cumul")
     private BigDecimal bonusPointsCumul;
-    private Integer cancelledSessionCumul;
+    private Integer cancelledSessionCumul;//EXTRA_POINT_DAYS
     private BigDecimal tmPercentCumul;
+
 
     public String getStudentName() {
         return studentName;
@@ -185,5 +190,21 @@ public class StudentSection implements Serializable {
 
     public BigDecimal getBonusPointsCumul() {
         return bonusPointsCumul;
+    }
+
+    public Integer getRequiredAttended() {
+        return requiredAttended;
+    }
+
+    public void setRequiredAttended(Integer requiredAttended) {
+        this.requiredAttended = requiredAttended;
+    }
+
+    public Integer getRequiredAttendedCumul() {
+        return requiredAttendedCumul;
+    }
+
+    public void setRequiredAttendedCumul(Integer requiredAttendedCumul) {
+        this.requiredAttendedCumul = requiredAttendedCumul;
     }
 }

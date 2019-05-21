@@ -20,7 +20,7 @@ public class StudentEntry implements Serializable {
     private Integer cancelledSession;
     private BigDecimal tmPercent;
     @Column(name = "extra_point_days")
-    private Integer requiredDays;
+    private Integer requiredAttended;
 
     public String getStudentName() {
         return studentName;
@@ -98,11 +98,11 @@ public class StudentEntry implements Serializable {
         this.entryName = entryName;
     }
 
-    public Integer getRequiredDays() {
-        return requiredDays;
+    public Integer getRequiredAttended() {
+        return requiredAttended;
     }
 
-    public void setRequiredDays(Integer extraPointDays) {
-        this.requiredDays = extraPointDays;
+    public void setRequiredAttended(Integer extraPointDays) {
+        this.requiredAttended = extraPointDays;
     }
 }
