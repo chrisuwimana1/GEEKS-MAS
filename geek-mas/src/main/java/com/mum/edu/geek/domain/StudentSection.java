@@ -24,6 +24,8 @@ public class StudentSection implements Serializable {
     private Integer numberOfWeeksCumul;
     private Integer totalDaysOffCumul;
     private Integer attendedCumul;
+    private Integer extraPoint;
+    private Integer extraPointCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
     @Transient
@@ -153,4 +155,11 @@ public class StudentSection implements Serializable {
         return getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
     }
 
+    public Integer getExtraPoint() {
+        return extraPoint;
+    }
+
+    public Integer getExtraPointCumul() {
+        return extraPointCumul;
+    }
 }
