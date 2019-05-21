@@ -36,12 +36,17 @@ $(document).ready(function () {
         },
 
         "columns": [
+
             {"data": "studentSectionId.studentId"},
             {"data": "studentName"},
-            {"data": "totalPossibleDays"},
-            {"data": "attended"},
-            {"data": "tmPercent"},
-            {"data": "extraPoint"},
+            {"data": null,"render":function (data,type,row) {
+                    return (data["numberOfWeeks"]*6 -data["totalDaysOff"]-data["cancelledSession"]);
+                }},
+            {"data": "requiredAttended"},
+            {"data": null, "render":function (data,type,row) {
+                    return ((data["requiredAttended"])/(data["numberOfWeeks"]*6 -data["totalDaysOff"]-data["cancelledSession"])*100).toFixed(2);
+                }},
+            {"data": "bonusPoints"},
             {"data": "blockName"}
         ]
     });
