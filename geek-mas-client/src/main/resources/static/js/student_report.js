@@ -58,7 +58,7 @@ $(document).ready(function () {
             },
             success: function (data) {
 
-                var possibleDays = (data.numberOfWeeksCumul*6)-data.totalDaysOffCumul-data.cancelledSessionCumul;
+                var possibleDays = (data.numberOfWeeksCumul*6)-data.cancelledSessionCumul;
 
                 var attendancePercentage = parseFloat(Math.round((data.attendedCumul/possibleDays)*100).toFixed(2));
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
             success: function (data) {
                 //console.log(data);
 
-                var possibleSessions = data.numberOfWeeks * 6 - data.totalDaysOff - data.cancelledSession;
+                var possibleSessions = data.numberOfWeeks * 6  - data.cancelledSession;
 
                 var blockAttendancePercentage = parseFloat(Math.round((data.attended/possibleSessions)*100).toFixed(2));
 
@@ -119,6 +119,7 @@ $(document).ready(function () {
                 $("#sessionsInBlock").text(possibleSessions);
                 $("#totalSessions").text(data.attended);
                 $("#percentage").text(blockAttendancePercentage);
+                $("#outOfBlockSessions").text(data.totalDaysOff)
                 $("#extraCredit").text(data.bonus);
 
             },
