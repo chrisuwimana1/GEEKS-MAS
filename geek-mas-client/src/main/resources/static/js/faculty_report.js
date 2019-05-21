@@ -37,7 +37,7 @@ $(document).ready(function () {
         },
 
         "columns": [
-            {"data": "studentId"},
+            {"data": "studentSectionId.studentId"},
             {"data": "studentName"},
             {"data": "totalPossibleDays"},
             {"data": "attended"},

@@ -53,6 +53,12 @@ public class DashboardController {
         return "viewSessions";
     }
 
+    @GetMapping("/cancelledSessions")
+    public String showCancelledSession(){
+        return "cancelledSessions";
+    }
+
+
 }
 
 

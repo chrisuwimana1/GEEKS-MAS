@@ -921,16 +921,16 @@ values ('2019-03-01', 11, 10079);
 
 --Insert cancelled session
 
-insert into cancelled_session(session_date)
-values ('2019-05-04');
-insert into cancelled_session(session_date)
-values ('2019-05-05');
-insert into cancelled_session(session_date)
-values ('2019-05-06');
-insert into cancelled_session(session_date)
-values ('2019-05-06');
-insert into cancelled_session(session_date)
-values ('2019-01-01');
+insert into cancelled_session(session_date,reason)
+values ('2019-05-04','Rain storm');
+insert into cancelled_session(session_date,reason)
+values ('2019-05-05','Day off');
+insert into cancelled_session(session_date,reason)
+values ('2019-05-06','Holiday');
+insert into cancelled_session(session_date,reason)
+values ('2019-05-06','Construction');
+insert into cancelled_session(session_date,reason)
+values ('2019-01-01','Academic Meeting');
 
 drop table if exists STUDENT_ENTRY;
 drop table if exists STUDENT_SECTION;

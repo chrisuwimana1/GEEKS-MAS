@@ -1,10 +1,15 @@
 $(document).ready(function () {
     var tmSessionId = null;
-    //$('#dtBasicExample').DataTable();
+    var decode = jwt_decode(localStorage.getItem("token"));
+    var url = "http://localhost:8888/tmsession";
+    if(decode.role == "STUDENT"){
+        url = url + '/' + decode.id;
+    }
+
    var table = $('#dtBasicExample').DataTable({
         "processing": true,
         "ajax": {
-            "url": "http://localhost:8888/tmsession",
+            "url": url,
             headers: {
                 "token":localStorage.getItem("token")
             },
@@ -15,19 +20,20 @@ $(document).ready(function () {
             {"data": "student.name"},
             {"data": "sessionType"},
             {"data": "sessionDate"}
-            //{"data": "id"}
+
             ]
     });
     //$('.dataTables_length').addClass('bs-select');
 
     $('#dtBasicExample').on( 'click', 'tbody tr', function () {
-        console.log(table.row(this).data());
+
         if (decoded.role == "ADMIN"){
             tmSessionId = table.row(this).data().id;
-            $('#studentID').val(table.row(this).data().student.id)
-            $('#studentName').val(table.row(this).data().student.name)
-            $('#sessionDate').val(table.row(this).data().sessionDate)
-            $("#tmSessionType").val(table.row(this).data().sessionType);
+            $('#tmSessionType').val(table.row(this).data().sessionType);
+            $('#studentID').val(table.row(this).data().student.id);
+            $('#studentName').val(table.row(this).data().student.name);
+            $('#sessionDate').val(table.row(this).data().sessionDate);
+
             $('#myModal').modal('show');
         }
 

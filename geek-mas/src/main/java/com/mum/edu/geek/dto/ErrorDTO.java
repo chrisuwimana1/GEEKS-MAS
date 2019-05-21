@@ -11,12 +11,6 @@ public class ErrorDTO{
     private String errorMessage;
     private List<String> validationMessages;
 
-    public ErrorDTO(String errorMessage,ErrorType type){
-        this.setUserMessage(errorMessage);
-        this.setErrorMessage(errorMessage);
-        this.setErrorType(type.toString());
-    }
-
     public ErrorDTO(List<String> validationMessages){
         this.setErrorType(ErrorType.VALIDATION.toString());
         this.setValidationMessages(validationMessages);
