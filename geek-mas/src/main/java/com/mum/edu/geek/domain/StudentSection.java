@@ -25,12 +25,11 @@ public class StudentSection implements Serializable {
     private Integer totalDaysOffCumul;
     private Integer attendedCumul;
     @Column(name = "extra_point")
-    private BigDecimal bonus;
-    private BigDecimal extraPointCumul;
+    private BigDecimal bonusPoints;
+    @Column(name = "extra_point_cumul")
+    private BigDecimal bonusPointsCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
-//    @Transient
-//    private Integer totalDays;
 
     public String getStudentName() {
         return studentName;
@@ -156,12 +155,8 @@ public class StudentSection implements Serializable {
         return getNumberOfWeeksCumul() == null ? null : getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
     }
 
-    public BigDecimal getBonus() {
-        return bonus;
-    }
-
     public BigDecimal geExtraPointCumul() {
-        return extraPointCumul;
+        return bonusPointsCumul;
     }
 
     public void setStudentSectionId(StudentSectionId studentSectionId) {
@@ -172,44 +167,23 @@ public class StudentSection implements Serializable {
         this.tmPercent = tmPercent;
     }
 
-    public void setBonus(BigDecimal bonus) {
-        this.bonus = bonus;
-    }
-
-    public void setExtraPointCumul(BigDecimal extraPointCumul) {
-        this.extraPointCumul = extraPointCumul;
+    public void setBonusPointsCumul(BigDecimal extraPointCumul) {
+        this.bonusPointsCumul = extraPointCumul;
     }
 
     public void setTmPercentCumul(BigDecimal tmPercentCumul) {
         this.tmPercentCumul = tmPercentCumul;
     }
 
-//    public void setTotalDays(Integer totalDays) {
-//        this.totalDays = totalDays;
-//    }
+    public BigDecimal getBonusPoints() {
+        return bonusPoints;
+    }
 
-    @Override
-    public String toString() {
-        return "StudentSection{" +
-                "studentSectionId=" + studentSectionId +
-                ", studentName='" + studentName + '\'' +
-                ", numberOfWeeks=" + numberOfWeeks +
-                ", totalDaysOff=" + totalDaysOff +
-                ", attended=" + attended +
-                ", tmPercent=" + tmPercent +
-                ", cancelledSession=" + cancelledSession +
-                ", blockId=" + blockId +
-                ", blockName='" + blockName + '\'' +
-                ", courseId='" + courseId + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", numberOfWeeksCumul=" + numberOfWeeksCumul +
-                ", totalDaysOffCumul=" + totalDaysOffCumul +
-                ", attendedCumul=" + attendedCumul +
-                ", bonus=" + bonus +
-                ", extraPointCumul=" + extraPointCumul +
-                ", cancelledSessionCumul=" + cancelledSessionCumul +
-                ", tmPercentCumul=" + tmPercentCumul +
-                //", totalDays=" + totalDays +
-                '}';
+    public void setBonusPoints(BigDecimal bonus) {
+        this.bonusPoints = bonus;
+    }
+
+    public BigDecimal getBonusPointsCumul() {
+        return bonusPointsCumul;
     }
 }
