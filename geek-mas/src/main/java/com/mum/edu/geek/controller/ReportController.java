@@ -93,6 +93,7 @@ public class ReportController {
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         List<StudentSection> list = reportService.findByStudentIdAndBlockIdReport(studentId, blockId);
         if (list == null || list.isEmpty()) return new StudentSection();
+        System.out.println("list = " + list);
         return list.get(0);
     }
 

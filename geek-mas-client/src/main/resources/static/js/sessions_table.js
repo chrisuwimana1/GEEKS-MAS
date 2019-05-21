@@ -20,7 +20,7 @@ $(document).ready(function () {
             {"data": "student.name"},
             {"data": "sessionType"},
             {"data": "sessionDate"}
-            //{"data": "id"}
+
             ]
     });
     //$('.dataTables_length').addClass('bs-select');

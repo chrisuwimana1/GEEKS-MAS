@@ -9,48 +9,46 @@
 
 <div class="col-xs-12 col-sm-9" id="attendance-page" layout:fragment="main-content">
 
-    <fieldset>
-        <legend>Cumulative Info</legend>
-        <p>Total Sessions Possible: <span id="totalSessionsPossible"></span></p>
-        <p>Total Sessions Attended: <span id="totalSessionsAttended"></span></p>
-        <p>Attendance percentage: <span id="attendancePercentage"></span></p>
-    </fieldset>
-
-    <hr>
-
-    <form method="post" th:action="@{/student/attendance}">
-        <div class="form-group">
-            <label>Block: </label>
-            <select>
-                <option selected value="">Select Block</option>
-                <option value="TMS">Jan 2019</option>
-                <option value="DC">Feb 2019</option>
-            </select>
+    <div class="row">
+        <div class="col-xs-6">
+            <fieldset>
+                <legend>Cumulative Info</legend>
+                <p>Total Sessions Possible: <span id="totalSessionsPossible"></span></p>
+                <p>Total Sessions Attended: <span id="totalSessionsAttended"></span></p>
+                <p>Attendance percentage: <span id="attendancePercentage"></span></p>
+            </fieldset>
+<!--            <hr>-->
         </div>
-    </form>
-    <p>Sessions in Block: <span id="sessionsInBlock"></span></p>
-    <p>Total Sessions Attended: <span id="totalSessions"></span></p>
-    <p>Percentage attended: <span id="percentage"></span> </p>
-    <p>Extra credit points: <span id="extraCredit"></span></p>
+        <div class="col-xs-6">
+            <fieldset>
+                <legend>Block Attendance Info</legend>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Present</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>11/12/2018</td>
-            <td>false</td>
-        </tr>
-        <tr>
-            <td>11/11/2018</td>
-            <td>true</td>
-        </tr>
-        </tbody>
-    </table>
+                <form method="post" th:action="@{/student/attendance}">
+                    <div class="form-group">
+                        <label>Block: </label>
+                        <select id="blocksList">
+                        </select>
+                    </div>
+                </form>
+                <p>Sessions in Block: <span id="sessionsInBlock"></span></p>
+                <p>Total Sessions Attended: <span id="totalSessions"></span></p>
+                <p>Percentage attended: <span id="percentage"></span></p>
+                <p>Extra credit points: <span id="extraCredit"></span></p>
+            </fieldset>
+        </div>
+    </div>
+
+    <div style="height:300px;overflow:auto;">
+        <table class="table" id="student-report">
+            <thead>
+            <tr>
+                <th scope="col">Dates Present</th>
+            </tr>
+            </thead>
+            <tbody id="tbodyid">
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <hr>

@@ -1,8 +1,8 @@
 package com.mum.edu.geek.domain;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -24,12 +24,13 @@ public class StudentSection implements Serializable {
     private Integer numberOfWeeksCumul;
     private Integer totalDaysOffCumul;
     private Integer attendedCumul;
-    private BigDecimal extraPoint;
+    @Column(name = "extra_point")
+    private BigDecimal bonus;
     private BigDecimal extraPointCumul;
     private Integer cancelledSessionCumul;
     private BigDecimal tmPercentCumul;
-    @Transient
-    private Integer totalDays;
+//    @Transient
+//    private Integer totalDays;
 
     public String getStudentName() {
         return studentName;
@@ -155,11 +156,60 @@ public class StudentSection implements Serializable {
         return getNumberOfWeeksCumul() == null ? null : getNumberOfWeeksCumul() * 6 - getCancelledSessionCumul();
     }
 
-    public BigDecimal geExtraPoint() {
-        return extraPoint == null ? null : extraPoint.round(new MathContext(3));
+    public BigDecimal getBonus() {
+        return bonus;
     }
 
     public BigDecimal geExtraPointCumul() {
-        return extraPointCumul == null ? null : extraPointCumul.round(new MathContext(3));
+        return extraPointCumul;
+    }
+
+    public void setStudentSectionId(StudentSectionId studentSectionId) {
+        this.studentSectionId = studentSectionId;
+    }
+
+    public void setTmPercent(BigDecimal tmPercent) {
+        this.tmPercent = tmPercent;
+    }
+
+    public void setBonus(BigDecimal bonus) {
+        this.bonus = bonus;
+    }
+
+    public void setExtraPointCumul(BigDecimal extraPointCumul) {
+        this.extraPointCumul = extraPointCumul;
+    }
+
+    public void setTmPercentCumul(BigDecimal tmPercentCumul) {
+        this.tmPercentCumul = tmPercentCumul;
+    }
+
+//    public void setTotalDays(Integer totalDays) {
+//        this.totalDays = totalDays;
+//    }
+
+    @Override
+    public String toString() {
+        return "StudentSection{" +
+                "studentSectionId=" + studentSectionId +
+                ", studentName='" + studentName + '\'' +
+                ", numberOfWeeks=" + numberOfWeeks +
+                ", totalDaysOff=" + totalDaysOff +
+                ", attended=" + attended +
+                ", tmPercent=" + tmPercent +
+                ", cancelledSession=" + cancelledSession +
+                ", blockId=" + blockId +
+                ", blockName='" + blockName + '\'' +
+                ", courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", numberOfWeeksCumul=" + numberOfWeeksCumul +
+                ", totalDaysOffCumul=" + totalDaysOffCumul +
+                ", attendedCumul=" + attendedCumul +
+                ", bonus=" + bonus +
+                ", extraPointCumul=" + extraPointCumul +
+                ", cancelledSessionCumul=" + cancelledSessionCumul +
+                ", tmPercentCumul=" + tmPercentCumul +
+                //", totalDays=" + totalDays +
+                '}';
     }
 }
