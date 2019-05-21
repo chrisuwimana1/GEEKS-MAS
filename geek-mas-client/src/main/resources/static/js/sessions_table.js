@@ -1,10 +1,15 @@
 $(document).ready(function () {
     var tmSessionId = null;
-    //$('#dtBasicExample').DataTable();
+    var decode = jwt_decode(localStorage.getItem("token"));
+    var url = "http://localhost:8888/tmsession";
+    if(decode.role == "STUDENT"){
+        url = url + '/' + decode.id;
+    }
+
    var table = $('#dtBasicExample').DataTable({
         "processing": true,
         "ajax": {
-            "url": "http://localhost:8888/tmsession",
+            "url": url,
             headers: {
                 "token":localStorage.getItem("token")
             },

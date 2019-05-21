@@ -11,6 +11,4 @@ import java.util.List;
 public interface TmSessionRepository extends JpaRepository<TmSession, Integer> {
 
     public List<TmSession> findByStudent(Student student);
-//    @Query("update TmSession t set t.sessionDate=?1, t.sessionType where  ")
-//    void update(TmSession tmSession)
 }
