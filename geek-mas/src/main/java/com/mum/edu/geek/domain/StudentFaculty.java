@@ -119,7 +119,7 @@ public class StudentFaculty implements Serializable {
     }
 
     public BigDecimal getExtraPoint() {
-        return extraPoint.round(new MathContext(3));
+        return extraPoint == null ? null : extraPoint.round(new MathContext(3));
     }
 
     public void setExtraPoint(BigDecimal extraPoint) {
@@ -139,11 +139,11 @@ public class StudentFaculty implements Serializable {
     }
 
     public Integer getTotalPossibleDays() {
-        return getNumberOfWeeks() * 6 - getCancelledSession();
+        return getNumberOfWeeks() == null ? null : getNumberOfWeeks() * 6 - getCancelledSession();
     }
 
     public BigDecimal getTmPercent() {
-        return tmPercent.round(new MathContext(3));
+        return tmPercent == null ? null : tmPercent.round(new MathContext(3));
     }
 
 
