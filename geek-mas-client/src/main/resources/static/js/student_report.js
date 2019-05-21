@@ -64,6 +64,7 @@ $(document).ready(function () {
 
                 $("#totalSessionsPossible").text(possibleDays);
                 $("#totalSessionsAttended").text(data.attendedCumul);
+                $("#cumulativeCancellesSessions").text(data.cancelledSessionCumul);
                 $("#attendancePercentage").text(attendancePercentage);
 
             }
@@ -119,6 +120,7 @@ $(document).ready(function () {
                 $("#sessionsInBlock").text(possibleSessions);
                 $("#totalSessions").text(data.attended);
                 $("#percentage").text(blockAttendancePercentage);
+                $("#cancelledSessions").text(data.cancelledSession);
                 $("#outOfBlockSessions").text(data.totalDaysOff)
                 $("#extraCredit").text(data.bonus);
 

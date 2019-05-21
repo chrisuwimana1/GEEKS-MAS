@@ -1,9 +1,25 @@
 $(document).ready(function () {
 
+    $('[type="date"]').prop('max', function () {
+        return new Date().toJSON().split('T')[0];
+    });
+
+    function validateDate(myDate) {
+        var currentDate = new Date();
+
+        if (myDate > currentDate) {
+            //$("#error-date").text(" The session date is a Future Date");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     $("#saveSession").on('click', function (evt) {
+        var sessionDateInput = $("#sessionDate").val();
         var studentIdInput = $("#studentID").val();
         var sessionTypeInput = $("#tmSessionType").val();
-        var sessionDateInput = $("#sessionDate").val()
 
         var student = {id: studentIdInput}
         var objectToSend = {sessionDate: sessionDateInput, sessionType: sessionTypeInput, student: student}
@@ -14,7 +30,7 @@ $(document).ready(function () {
             url: "http://localhost:8888/tmsession/save",
             type: 'POST',
             headers: {
-                "token":localStorage.getItem("token")
+                "token": localStorage.getItem("token")
             },
             data: tmSession,
             contentType: 'application/json',   // Sends
@@ -27,11 +43,11 @@ $(document).ready(function () {
 
                 var messages = "";
 
-                if(data.responseJSON.validationMessages){
-                    $.each( data.responseJSON.validationMessages, function (index, errorMessage){
-                        messages+=errorMessage+"<br>"
-                    } );
-                }else{
+                if (data.responseJSON.validationMessages) {
+                    $.each(data.responseJSON.validationMessages, function (index, errorMessage) {
+                        messages += errorMessage + "<br>"
+                    });
+                } else {
                     messages = data.responseJSON.userMessage;
                 }
 
@@ -39,5 +55,6 @@ $(document).ready(function () {
                 $("#error").append(messages);
             }
         })
+
     });
 });
