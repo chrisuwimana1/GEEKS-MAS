@@ -49,6 +49,18 @@ $(document).ready(function () {
 
     function getAccumulativeInfo() {
 
+        $("#sessionsInBlock").text("");
+        $("#requiredSessionsInBlock").text("");
+        $("#sessionsAttended").text("");
+        $("#requiredSessionsAttended").text("");
+        $("#totalRequiredSessionsPerBlock").text("");
+        $("#outOfBlockSessions").text("")
+        $("#requiredPercentage").text("");
+        $("#percentage").text("");
+        $("#cancelledSessions").text("");
+        $("#extraCredit").text("");
+        $("#tbodyid").empty();
+
         $.ajax({
             url: "http://localhost:8888/attendances/sections/students/" + studentId + "/cumul",
             contentType: "application/json",

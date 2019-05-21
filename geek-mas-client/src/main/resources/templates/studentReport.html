@@ -9,6 +9,8 @@
 
 <div class="col-xs-12 col-sm-9" id="attendance-page" layout:fragment="main-content">
 
+    <h2>Student Report</h2>
+    <hr>
     <div id ="search-section">
         <input type="text" id="studentId" placeholder="Enter Student ID">
         <button type="button" class="btn btn-primary" id="searchId">Search</button>
@@ -18,13 +20,10 @@
             <fieldset>
                 <legend>Cumulative Info</legend>
                 <p>Total Sessions Possible: <span id="totalSessionsPossible"></span></p>
-                <p>Total required Sessions: <span id="totalRequiredSessions"></span></p>
-
                 <p>Total Sessions Attended: <span id="totalSessionsAttended"></span></p>
+                <p>Total required Sessions: <span id="totalRequiredSessions"></span></p>
                 <p>Total required Sessions Attended: <span id="totalRequiredSessionsAttended"></span></p>
-
                 <p>Cumulative Cancelled Sessions: <span id="cumulativeCancellesSessions"></span></p>
-
                 <p>Overall Attendance percentage : <span id="attendancePercentage"></span></p>
                 <p>Required Attendance percentage : <span id="requiredAttendancePercentage"></span></p>
             </fieldset>
@@ -42,8 +41,8 @@
                     </div>
                 </form>
                 <p>Sessions in Block: <span id="sessionsInBlock"></span></p>
-                <p>Required Sessions in Block: <span id="requiredSessionsInBlock"></span></p>
                 <p>Total Sessions Attended: <span id="sessionsAttended"></span></p>
+                <p>Required Sessions in Block: <span id="requiredSessionsInBlock"></span></p>
                 <p>Total required Sessions Attended: <span id="requiredSessionsAttended"></span></p>
                 <p>Percentage attended: <span id="percentage"></span></p>
                 <p>Required Percentage attended: <span id="requiredPercentage"></span></p>
