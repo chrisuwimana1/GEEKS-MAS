@@ -13,50 +13,62 @@ $(document).ready(function () {
         case "ADMIN":
         case "FACULTY":
             $("#search-section").show();
-            studentId = $("#studentID").val();
+            $("blocksList").hide();
+            //studentId = $("#studentID").val();
+            //console(studentId);
             break;
         case "STUDENT":
             studentId = decoded.id;
+            loadDropDownList();
+            getAccumulativeInfo();
             break;
     }
 
-    //Populate drop down
-    var dropdown = $('#blocksList');
+    function loadDropDownList() {
+        //Populate drop down
+        var dropdown = $('#blocksList');
 
-    dropdown.empty();
+        dropdown.empty();
 
-    dropdown.append('<option selected="true" disabled>Select Block</option>');
-    dropdown.prop('selectedIndex', 0);
-    $.ajax({
-        url: "http://localhost:8888/attendances/sections/students/" + studentId,
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        contentType: "application/json",
-        dataType: 'json',
-        success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                dropdown.append($('<option></option>').attr('value', data[i].blockId).text(data[i].blockName));
+        dropdown.append('<option selected="true" disabled>Select Block</option>');
+        dropdown.prop('selectedIndex', 0);
+        $.ajax({
+            url: "http://localhost:8888/attendances/sections/students/" + studentId,
+            headers: {
+                "token": localStorage.getItem("token")
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    dropdown.append($('<option></option>').attr('value', data[i].blockId).text(data[i].blockName));
+                }
             }
-        }
-    });
+        })
+    }
 
+    function getAccumulativeInfo() {
 
-    $.ajax({
-        url: "http://localhost:8888//attendances/sections/students/" + studentId + "/cumul",
-        contentType: "application/json",
-        dataType: 'json',
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        success: function (data) {
+        $.ajax({
+            url: "http://localhost:8888/attendances/sections/students/" + studentId + "/cumul",
+            contentType: "application/json",
+            dataType: 'json',
+            headers: {
+                "token": localStorage.getItem("token")
+            },
+            success: function (data) {
 
-            $("#totalSessionsPossible").text(data.totalDaysCumul);
-            $("#totalSessionsAttended").text(data.attendedCumul);
-            $("#attendancePercentage").text(data.tmPercentCumul);
+                var possibleDays = (data.numberOfWeeksCumul*6)-data.cancelledSessionCumul;
 
-        }
-    })
+                var attendancePercentage = parseFloat(Math.round((data.attendedCumul/possibleDays)*100).toFixed(2));
+
+                $("#totalSessionsPossible").text(possibleDays);
+                $("#totalSessionsAttended").text(data.attendedCumul);
+                $("#attendancePercentage").text(attendancePercentage);
+
+            }
+        })
+    }
 
     $("#blocksList").change(function () {
 
@@ -76,8 +88,8 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
+                console.log(data.length)
                 for (var i = 0; i < data.length; i++) {
-                    console.log(data[i].reportingId.attendanceDate)
                     $('#student-report tbody').append("<tr><td>" + data[i].reportingId.attendanceDate + "</td></tr>")
                 }
             },
@@ -96,24 +108,33 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 //console.log(data);
-                $("#sessionsInBlock").text(data.totalDays);
+
+                var possibleSessions = data.numberOfWeeks * 6  - data.cancelledSession;
+
+                var blockAttendancePercentage = parseFloat(Math.round((data.attended/possibleSessions)*100).toFixed(2));
+
+
+               // var t = data.totalDays - ;
+
+                $("#sessionsInBlock").text(possibleSessions);
                 $("#totalSessions").text(data.attended);
-                $("#percentage").text(data.tmPercent);
+                $("#percentage").text(blockAttendancePercentage);
+                $("#outOfBlockSessions").text(data.totalDaysOff)
                 $("#extraCredit").text(data.bonus);
 
             },
             error: function (e) {
                 alert(e)
             }
-
         })
-
-
     })
 
-
-    /// alert( "Handler for .change() called." );
-    //});
-
+    $("#searchId").click(function () {
+        studentId = $("#studentId").val();
+        console.log(studentId);
+        $("#blocksList").show();
+        loadDropDownList();
+        getAccumulativeInfo();
+    })
 
 });

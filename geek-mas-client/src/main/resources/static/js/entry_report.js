@@ -17,8 +17,8 @@ $(document).ready(function () {
             {"data": "entryName"},
             {"data": "studentId"},
             {"data": "studentName"},
-            {"data": "totalPossibleDays"},
             {"data": "attended"},
+            {"data": "totalPossibleDays"},
             {"data": "tmPercent"}
         ]
     });

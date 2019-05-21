@@ -67,6 +67,15 @@ public class User implements Serializable {
         return 0;
     }
 
+    public String getName(){
+        if(faculty != null){
+            return faculty.getName();
+        }else if (student != null){
+            return student.getName();
+        }
+        return username;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
