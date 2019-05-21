@@ -53,7 +53,7 @@ public class JwtUtil {
 
     public String generateToken(User user,String role){
         return Jwts.builder()
-                .setSubject(user.getUsername())
+                .setSubject(user.getName())
                 .claim("role",role)
                 .claim("id",user.getIdOwner())
                 .signWith(this.getKey())
