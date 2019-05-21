@@ -28,7 +28,6 @@ $(document).ready(function () {
         ],
         "processing": true,
         "ajax": {
-           // "url": "http://localhost:8888/attendances/faculties/"+facultyId+"/students",
             "url": urlToSend,
             dataSrc: '',
             headers: {

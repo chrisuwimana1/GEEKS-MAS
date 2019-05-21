@@ -7,6 +7,10 @@ $(document).ready(function () {
     }
 
    var table = $('#dtBasicExample').DataTable({
+       dom: 'lBfrtip',
+       buttons: [
+           'csv', 'excel', 'pdf', 'print'
+       ],
         "processing": true,
         "ajax": {
             "url": url,
