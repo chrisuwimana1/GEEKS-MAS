@@ -1,5 +1,6 @@
 package com.mum.edu.geek.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -18,6 +19,8 @@ public class StudentEntry implements Serializable {
     private String entryName;
     private Integer cancelledSession;
     private BigDecimal tmPercent;
+    @Column(name = "extra_point_days")
+    private Integer requiredDays;
 
     public String getStudentName() {
         return studentName;
@@ -93,5 +96,13 @@ public class StudentEntry implements Serializable {
 
     public void setEntryName(String entryName) {
         this.entryName = entryName;
+    }
+
+    public Integer getRequiredDays() {
+        return requiredDays;
+    }
+
+    public void setRequiredDays(Integer extraPointDays) {
+        this.requiredDays = extraPointDays;
     }
 }

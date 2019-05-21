@@ -921,16 +921,16 @@ values ('2019-03-01', 11, 10079);
 
 --Insert cancelled session
 
-insert into cancelled_session(session_date,reason)
-values ('2019-05-04','Rain storm');
-insert into cancelled_session(session_date,reason)
-values ('2019-05-05','Day off');
-insert into cancelled_session(session_date,reason)
-values ('2019-05-06','Holiday');
-insert into cancelled_session(session_date,reason)
-values ('2019-05-06','Construction');
-insert into cancelled_session(session_date,reason)
-values ('2019-01-01','Academic Meeting');
+insert into cancelled_session(session_date, reason)
+values ('2019-05-04', 'Rain storm');
+insert into cancelled_session(session_date, reason)
+values ('2019-05-05', 'Day off');
+insert into cancelled_session(session_date, reason)
+values ('2019-05-06', 'Holiday');
+insert into cancelled_session(session_date, reason)
+values ('2019-05-06', 'Construction');
+insert into cancelled_session(session_date, reason)
+values ('2019-01-01', 'Academic Meeting');
 
 drop table if exists STUDENT_ENTRY;
 drop table if exists STUDENT_SECTION;
@@ -1006,6 +1006,7 @@ CREATE VIEW STUDENT_ENTRY AS (
            SUM(TOTAL_DAYS_OFF)                                                       TOTAL_DAYS_OFF,
            SUM(CANCELLED_SESSION)                                                    CANCELLED_SESSION,
            SUM(ATTENDED)                                                             ATTENDED,
+           EXTRA_POINT_DAYS,
            SUM(ATTENDED) * 100 / (SUM(NUMBER_OF_WEEKS) * 6 - SUM(CANCELLED_SESSION)) TM_PERCENT,
            ENTRY_ID,
            ENTRY_NAME
@@ -1015,13 +1016,14 @@ CREATE VIEW STUDENT_ENTRY AS (
                  NUMBER_OF_WEEKS,
                  TOTAL_DAYS_OFF,
                  COUNT(*)                        ATTENDED,
+                 SUM(EXTRA_POINT_DAY)            EXTRA_POINT_DAYS,
                  ENTRY_ID,
                  ENTRY_NAME,
                  SECTION_ID
           FROM REPORTING
           WHERE ATTENDANCE_TYPE = 'IN_BLOCK'
           GROUP BY ENTRY_ID, STUDENT_ID, SECTION_ID) A
-    GROUP BY STUDENT_ID);
+    GROUP BY STUDENT_ID, EXTRA_POINT_DAYS);
 
 CREATE VIEW STUDENT_SECTION AS (
     SELECT A.*,
