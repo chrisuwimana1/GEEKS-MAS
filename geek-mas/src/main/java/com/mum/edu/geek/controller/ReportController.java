@@ -68,7 +68,7 @@ public class ReportController {
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         List<StudentSection> list = reportService.findByStudentIdReport(studentId);
 
-        if (list == null || list.isEmpty()) return new StudentSection();
+        if (list == null || list.isEmpty()) return null;
 
         return list.get(0);
     }
@@ -92,8 +92,7 @@ public class ReportController {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN, Role.FACULTY, Role.STUDENT)))
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
         List<StudentSection> list = reportService.findByStudentIdAndBlockIdReport(studentId, blockId);
-        if (list == null || list.isEmpty()) return new StudentSection();
-        System.out.println("list = " + list);
+        if (list == null || list.isEmpty()) return null;
         return list.get(0);
     }
 

@@ -1,5 +1,6 @@
 package com.mum.edu.geek.domain;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -26,8 +27,10 @@ public class StudentFaculty implements Serializable {
     private Integer facultyId;
     private String facultyName;
     private Integer cancelledSession;
-    private BigDecimal extraPoint;
-    private Integer extraPointDays;
+    @Column(name = "extra_point")
+    private BigDecimal bonusPoints;
+    @Column(name = "extra_point_days")
+    private Integer requiredDays;
     private BigDecimal tmPercent;
 
     public String getStudentName() {
@@ -118,20 +121,12 @@ public class StudentFaculty implements Serializable {
         this.totalDaysOff = totalDaysOff;
     }
 
-    public BigDecimal getExtraPoint() {
-        return extraPoint.round(new MathContext(3));
+    public BigDecimal getBonusPoints() {
+        return bonusPoints == null ? null : bonusPoints.round(new MathContext(3));
     }
 
-    public void setExtraPoint(BigDecimal extraPoint) {
-        this.extraPoint = extraPoint;
-    }
-
-    public Integer getExtraPointDays() {
-        return extraPointDays;
-    }
-
-    public void setExtraPointDays(Integer extraPointDays) {
-        this.extraPointDays = extraPointDays;
+    public void setBonusPoints(BigDecimal bonusPoints) {
+        this.bonusPoints = bonusPoints;
     }
 
     public String getBlockName() {
@@ -139,11 +134,11 @@ public class StudentFaculty implements Serializable {
     }
 
     public Integer getTotalPossibleDays() {
-        return getNumberOfWeeks() * 6 - getCancelledSession();
+        return getNumberOfWeeks() == null ? null : getNumberOfWeeks() * 6 - getCancelledSession();
     }
 
     public BigDecimal getTmPercent() {
-        return tmPercent.round(new MathContext(3));
+        return tmPercent == null ? null : tmPercent.round(new MathContext(3));
     }
 
 
