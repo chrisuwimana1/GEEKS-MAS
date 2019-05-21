@@ -13,50 +13,58 @@ $(document).ready(function () {
         case "ADMIN":
         case "FACULTY":
             $("#search-section").show();
-            studentId = $("#studentID").val();
+            $("blocksList").hide();
+            //studentId = $("#studentID").val();
+            //console(studentId);
             break;
         case "STUDENT":
             studentId = decoded.id;
+            loadDropDownList();
+            getAccumulativeInfo();
             break;
     }
 
-    //Populate drop down
-    var dropdown = $('#blocksList');
+    function loadDropDownList() {
+        //Populate drop down
+        var dropdown = $('#blocksList');
 
-    dropdown.empty();
+        dropdown.empty();
 
-    dropdown.append('<option selected="true" disabled>Select Block</option>');
-    dropdown.prop('selectedIndex', 0);
-    $.ajax({
-        url: "http://localhost:8888/attendances/sections/students/" + studentId,
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        contentType: "application/json",
-        dataType: 'json',
-        success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                dropdown.append($('<option></option>').attr('value', data[i].blockId).text(data[i].blockName));
+        dropdown.append('<option selected="true" disabled>Select Block</option>');
+        dropdown.prop('selectedIndex', 0);
+        $.ajax({
+            url: "http://localhost:8888/attendances/sections/students/" + studentId,
+            headers: {
+                "token": localStorage.getItem("token")
+            },
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    dropdown.append($('<option></option>').attr('value', data[i].blockId).text(data[i].blockName));
+                }
             }
-        }
-    });
+        })
+    }
 
+    function getAccumulativeInfo() {
 
-    $.ajax({
-        url: "http://localhost:8888//attendances/sections/students/" + studentId + "/cumul",
-        contentType: "application/json",
-        dataType: 'json',
-        headers: {
-            "token": localStorage.getItem("token")
-        },
-        success: function (data) {
+        $.ajax({
+            url: "http://localhost:8888/attendances/sections/students/" + studentId + "/cumul",
+            contentType: "application/json",
+            dataType: 'json',
+            headers: {
+                "token": localStorage.getItem("token")
+            },
+            success: function (data) {
 
-            $("#totalSessionsPossible").text(data.totalDaysCumul);
-            $("#totalSessionsAttended").text(data.attendedCumul);
-            $("#attendancePercentage").text(data.tmPercentCumul);
+                $("#totalSessionsPossible").text(data.totalDaysCumul);
+                $("#totalSessionsAttended").text(data.attendedCumul);
+                $("#attendancePercentage").text(data.tmPercentCumul);
 
-        }
-    })
+            }
+        })
+    }
 
     $("#blocksList").change(function () {
 
@@ -96,7 +104,10 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 //console.log(data);
-                $("#sessionsInBlock").text(data.totalDays);
+
+                var t = data.totalDays - data.totalDaysOff;
+
+                $("#sessionsInBlock").text(t);
                 $("#totalSessions").text(data.attended);
                 $("#percentage").text(data.tmPercent);
                 $("#extraCredit").text(data.bonus);
@@ -111,9 +122,12 @@ $(document).ready(function () {
 
     })
 
-
-    /// alert( "Handler for .change() called." );
-    //});
-
+    $("#searchId").click(function () {
+        studentId = $("#studentId").val();
+        console.log(studentId);
+        $("#blocksList").show();
+        loadDropDownList();
+        getAccumulativeInfo();
+    })
 
 });
