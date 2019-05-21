@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    $("#search-section").hide();
 
     try {
         var decode = jwt_decode(localStorage.getItem("token"));
@@ -6,7 +7,19 @@ $(document).ready(function () {
         window.location = "http://localhost:8080/login";
     }
 
-    var studentId = decoded.id;
+    var studentId = null;
+
+    switch (decoded.role) {
+        case "ADMIN":
+        case "FACULTY":
+            $("#search-section").show();
+            studentId = $("#studentID").val();
+            break;
+        case "STUDENT":
+            studentId = decoded.id;
+            break;
+    }
+
     //Populate drop down
     var dropdown = $('#blocksList');
 
