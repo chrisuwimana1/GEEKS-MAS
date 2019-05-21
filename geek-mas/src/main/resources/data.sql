@@ -1006,7 +1006,7 @@ CREATE VIEW STUDENT_ENTRY AS (
            SUM(TOTAL_DAYS_OFF)                                                       TOTAL_DAYS_OFF,
            SUM(CANCELLED_SESSION)                                                    CANCELLED_SESSION,
            SUM(ATTENDED)                                                             ATTENDED,
-           EXTRA_POINT_DAYS,
+           SUM(EXTRA_POINT_DAYS)                                                     EXTRA_POINT_DAYS,
            SUM(ATTENDED) * 100 / (SUM(NUMBER_OF_WEEKS) * 6 - SUM(CANCELLED_SESSION)) TM_PERCENT,
            ENTRY_ID,
            ENTRY_NAME
@@ -1023,7 +1023,7 @@ CREATE VIEW STUDENT_ENTRY AS (
           FROM REPORTING
           WHERE ATTENDANCE_TYPE = 'IN_BLOCK'
           GROUP BY ENTRY_ID, STUDENT_ID, SECTION_ID) A
-    GROUP BY STUDENT_ID, EXTRA_POINT_DAYS);
+    GROUP BY STUDENT_ID);
 
 CREATE VIEW STUDENT_SECTION AS (
     SELECT A.*,

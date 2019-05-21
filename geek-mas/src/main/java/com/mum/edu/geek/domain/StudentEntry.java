@@ -1,6 +1,7 @@
 package com.mum.edu.geek.domain;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -11,11 +12,11 @@ import java.math.MathContext;
 public class StudentEntry implements Serializable {
     @Id
     private Integer studentId;
+    private Integer entryId;
     private String studentName;
     private Integer numberOfWeeks;
     private Integer totalDaysOff;
     private Integer attended;
-    private Integer entryId;
     private String entryName;
     private Integer cancelledSession;
     private BigDecimal tmPercent;
@@ -44,22 +45,6 @@ public class StudentEntry implements Serializable {
 
     public void setAttended(Integer attended) {
         this.attended = attended;
-    }
-
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
-
-    public Integer getEntryId() {
-        return entryId;
-    }
-
-    public void setEntryId(Integer entryId) {
-        this.entryId = entryId;
     }
 
     public Integer getCancelledSession() {
@@ -104,5 +89,21 @@ public class StudentEntry implements Serializable {
 
     public void setRequiredAttended(Integer extraPointDays) {
         this.requiredAttended = extraPointDays;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public Integer getEntryId() {
+        return entryId;
+    }
+
+    public void setEntryId(Integer entryId) {
+        this.entryId = entryId;
     }
 }
