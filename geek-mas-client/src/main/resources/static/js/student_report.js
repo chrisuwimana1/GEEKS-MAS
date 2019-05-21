@@ -85,22 +85,16 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
 
                 $("#sessionsInBlock").text(data.totalDays);
                 $("#totalSessions").text(data.attended);
                 $("#percentage").text(data.tmPercent);
-               // $("#extraCredit").text(data);
+                $("#extraCredit").text(data.extraPoint);
             },
             error: function (e) {
                 alert(e)
             }
-
-
-            // $("#sessionsInBlock").text(data);
-            // $("#totalSessions").text(data);
-            // $("#percentage").text(data);
-            // $("#extraCredit").text(data);
 
         })
 
