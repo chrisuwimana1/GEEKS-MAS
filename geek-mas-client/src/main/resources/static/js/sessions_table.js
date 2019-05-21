@@ -21,13 +21,14 @@ $(document).ready(function () {
     //$('.dataTables_length').addClass('bs-select');
 
     $('#dtBasicExample').on( 'click', 'tbody tr', function () {
-        console.log(table.row(this).data());
+
         if (decoded.role == "ADMIN"){
             tmSessionId = table.row(this).data().id;
-            $('#studentID').val(table.row(this).data().student.id)
-            $('#studentName').val(table.row(this).data().student.name)
-            $('#sessionDate').val(table.row(this).data().sessionDate)
-            $("#tmSessionType").val(table.row(this).data().sessionType);
+            $('#tmSessionType').val(table.row(this).data().sessionType);
+            $('#studentID').val(table.row(this).data().student.id);
+            $('#studentName').val(table.row(this).data().student.name);
+            $('#sessionDate').val(table.row(this).data().sessionDate);
+
             $('#myModal').modal('show');
         }
 
