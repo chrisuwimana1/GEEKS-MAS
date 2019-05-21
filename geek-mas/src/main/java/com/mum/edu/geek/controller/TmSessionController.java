@@ -6,6 +6,7 @@ import com.mum.edu.geek.exception.GeneralException;
 import com.mum.edu.geek.service.TmSessionService;
 import com.mum.edu.geek.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +30,11 @@ public class TmSessionController {
         if (!jwtUtil.isGranted(token, Arrays.asList(Role.ADMIN)))
             throw new GeneralException(jwtUtil.NOT_GRANTED_MESSAGE);
 
-            tmSessionService.save(tmSession);
+            try {
+                tmSessionService.save(tmSession);
+            }catch (InvalidDataAccessApiUsageException ex){
+                throw new GeneralException("Student not found");
+            }
             return "page";
     }
 
