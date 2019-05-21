@@ -42,6 +42,7 @@ public class Student implements Serializable {
     }
 
     public Student(Integer studentId) {
+        this.id = studentId;
     }
 
     public int getId() {
